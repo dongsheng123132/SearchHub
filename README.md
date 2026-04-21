@@ -1,157 +1,134 @@
-# SearchHub - 改进版多引擎搜索工具
+# 🔍 AI Search Hub
 
-## 概述
+> **一次搜索，同时打开多个 AI + 搜索引擎 | Search once, get results from all engines at once**
 
-SearchHub 是一个功能强大的浏览器扩展，让您可以一次性在多个搜索引擎上进行搜索，大大提高搜索效率。
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/lojjckopababijcnckabcilfkbgajnbo?label=Chrome%20Web%20Store)](https://chromewebstore.google.com/detail/ai-search-hub/lojjckopababijcnckabcilfkbgajnbo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 主要特性
+[中文](#中文) | [English](#english)
 
-### 🎨 现代化UI设计
-- ✅ 支持亮色/暗色模式自动切换
-- ✅ 流畅的动画效果
-- ✅ 响应式布局，适配各种屏幕
+---
 
-### 🔍 强大的搜索功能
-- ✅ 60+ 预设搜索引擎（AI搜索、传统搜索、社交媒体等）
-- ✅ 自定义搜索引擎
-- ✅ 快捷组合一键搜索
-- ✅ 智能标签页分组管理
-- ✅ 支持新标签页和新窗口两种模式
+<a id="中文"></a>
 
-### ⚙️ 灵活的配置
-- ✅ 拖拽排序
-- ✅ 分类管理
-- ✅ 自定义组合
-- ✅ 配置导入/导出
-- ✅ 记住上次搜索
+## 中文
 
-### 🚀 便捷的操作
-- ✅ 右键菜单快速搜索
-- ✅ 快捷键支持（Alt+S 打开，Alt+Q 搜索选中文本）
-- ✅ 侧边栏标签管理
-- ✅ AI 追问功能
+### 这是什么
 
-## 相比 SeekAll 的改进
+AI Search Hub 是一个 Chrome 浏览器扩展，让你**一次输入，同时在多个搜索引擎打开结果**。支持 60+ 引擎，涵盖 AI 搜索、AI 聊天、传统搜索、社交媒体、视频、开发者工具、购物、知识库等分类。
 
-### UI/UX 改进
-1. **更美观的界面** - 采用现代化设计，支持暗黑模式
-2. **更好的交互** - 拖拽排序、更直观的操作
-3. **更清晰的布局** - 分类管理，一目了然
+### 安装
 
-### 功能改进
-1. **智能标签管理** - 自动分组、折叠、颜色标识
-2. **更强大的自定义** - 自定义引擎更简单，支持任意网站
-3. **快捷组合** - 预设和自定义组合，一键快速搜索
-4. **配置管理** - 支持导入导出，方便备份和迁移
+**方式一：Chrome 应用商店（推荐）**
 
-### 性能改进
-1. **更快的响应速度**
-2. **更少的内存占用**
-3. **更好的兼容性**
+[👉 点击安装 AI Search Hub](https://chromewebstore.google.com/detail/ai-search-hub/lojjckopababijcnckabcilfkbgajnbo)
 
-## 安装方法
+**方式二：本地开发安装**
 
-1. 下载或克隆此项目
-2. 打开 Chrome/Edge 浏览器
-3. 进入扩展管理页面 (chrome://extensions/)
-4. 开启"开发者模式"
-5. 点击"加载已解压的扩展程序"
-6. 选择 SearchHub 文件夹
-
-## 使用指南
-
-### 基础搜索
-1. 点击扩展图标或按 Alt+S 打开 SearchHub
-2. 在搜索框输入关键词
-3. 选择要使用的搜索引擎（可多选）
-4. 点击搜索按钮
-
-### 快捷组合
-- 点击预设的组合按钮（如"All AI"、"Traditional"等）
-- 一键选中该组合包含的所有引擎
-- 立即搜索
-
-### 右键搜索
-1. 选中网页中的文字
-2. 右键点击选择"Search with SearchHub"
-3. 自动在所有已选引擎中搜索
-
-### 快捷键
-- `Alt+S` - 打开 SearchHub 主页
-- `Alt+Q` - 搜索选中的文字
-
-### 自定义引擎
-1. 进入设置页面
-2. 点击"Add Engine"
-3. 填写引擎名称、URL（使用 %s 作为查询占位符）
-4. 保存
-
-### 自定义组合
-1. 进入设置页面
-2. 点击"Add Combo"
-3. 输入组合名称并选择引擎
-4. 保存后即可在主页使用
-
-## 文件结构
-
-```
-SearchHub/
-├── manifest.json           # 扩展配置文件
-├── index.html             # 主页面
-├── settings.html          # 设置页面
-├── sidebar.html           # 侧边栏
-├── background.js          # 后台脚本
-├── content.js             # 内容脚本
-├── content.css            # 内容样式
-├── scripts/
-│   ├── config.js          # 搜索引擎配置
-│   ├── index.js           # 主页逻辑
-│   ├── settings.js        # 设置页逻辑
-│   └── sidebar.js         # 侧边栏逻辑
-├── styles/
-│   ├── index.css          # 主页样式
-│   ├── settings.css       # 设置页样式
-│   └── sidebar.css        # 侧边栏样式
-└── icons/                 # 图标文件夹
-    ├── icon16.png
-    ├── icon32.png
-    ├── icon48.png
-    └── icon128.png
+```bash
+git clone https://github.com/dongsheng123132/SearchHub.git
 ```
 
-## 图标说明
+1. 打开 `chrome://extensions/`
+2. 开启右上角「开发者模式」
+3. 点击「加载已解压的扩展程序」
+4. 选择克隆下来的 `SearchHub` 文件夹
 
-icons 文件夹中需要以下图标文件：
-- icon16.png (16x16)
-- icon32.png (32x32)
-- icon48.png (48x48)
-- icon128.png (128x128)
+### 主要功能
 
-您可以使用任何图标制作工具创建这些图标，或使用在线工具如 favicon.io 生成。
+- **60+ 预设引擎** — AI 搜索、AI 聊天、Google/Bing/百度、社交媒体、B站、GitHub 等
+- **智能标签分组** — 搜索结果自动归组，颜色标识，一目了然
+- **快捷组合** — 预设「All AI」「传统搜索」「AI Chat」组合，一键多搜
+- **侧边栏管理** — 搜索后自动打开侧边栏，垂直标签页管理
+- **右键搜索** — 选中文字 → 右键「Search with SearchHub」
+- **快捷键** — `Alt+S` 打开 · `Alt+Q` 搜索选中文字
+- **自定义引擎** — 添加任意网站到搜索列表
+- **中英文界面** — 支持语言切换
+- **深色/浅色模式** — 跟随系统自动切换
 
-## 技术栈
+### 支持的引擎分类
 
-- Manifest V3
-- 原生 JavaScript (无框架依赖)
-- CSS3 (CSS Variables for theming)
-- Chrome Extension APIs
+| 分类 | 引擎示例 |
+|------|---------|
+| 🤖 AI Search | Perplexity · Phind · You.com · Metaso · Genspark · Felo |
+| 💬 AI Chat | ChatGPT · Claude · Gemini · DeepSeek · Kimi · Grok · 豆包 · 文心 |
+| 🔍 传统搜索 | Google · Bing · 百度 · DuckDuckGo · Yandex |
+| 📱 社交媒体 | 小红书 · 抖音 · 微博 · Twitter/X · Reddit |
+| 🎥 视频 | YouTube · B站 · 西瓜视频 |
+| 👨‍💻 开发者 | GitHub · Stack Overflow · MDN · NPM |
+| 🛒 购物 | Amazon · 淘宝 · 京东 · 拼多多 |
+| 📚 知识库 | Wikipedia · 知乎 · 百度百科 |
 
-## 开发计划
+### 联系 & 合作
 
-- [ ] 更多预设搜索引擎
-- [ ] 搜索历史记录
-- [ ] 云端同步
-- [ ] 多语言支持
-- [ ] 插件市场
+- 微信: hecare888
+- Telegram: [@dsds8848](https://t.me/dsds8848)
+- Twitter/X: [@Bitplus888](https://x.com/Bitplus888)
+- Email: [hefangsheng@gmail.com](mailto:hefangsheng@gmail.com)
+- GitHub: [@dongsheng123132](https://github.com/dongsheng123132)
 
-## 许可证
+---
 
-MIT License
+<a id="english"></a>
 
-## 贡献
+## English
 
-欢迎提交 Issue 和 Pull Request！
+### What is this
 
-## 致谢
+AI Search Hub is a Chrome extension that lets you **search once and open results across multiple engines simultaneously**. Supports 60+ engines including AI search, AI chat, traditional search, social media, video, developer tools, shopping, and knowledge bases.
 
-参考了 SeekAll 的设计理念，并在此基础上进行了大量改进和优化。
+### Install
+
+**Option 1: Chrome Web Store (Recommended)**
+
+[👉 Install AI Search Hub](https://chromewebstore.google.com/detail/ai-search-hub/lojjckopababijcnckabcilfkbgajnbo)
+
+**Option 2: Local development**
+
+```bash
+git clone https://github.com/dongsheng123132/SearchHub.git
+```
+
+1. Open `chrome://extensions/`
+2. Enable **Developer mode** (top right)
+3. Click **Load unpacked**
+4. Select the cloned `SearchHub` folder
+
+### Features
+
+- **60+ preset engines** — AI search, AI chat, Google/Bing/Baidu, social media, GitHub, and more
+- **Smart tab grouping** — Results auto-grouped with color labels
+- **Quick combos** — Preset "All AI", "Traditional", "AI Chat" combos for one-click multi-search
+- **Sidebar manager** — Auto-opens after search for vertical tab management
+- **Right-click search** — Select text → right-click → "Search with SearchHub"
+- **Keyboard shortcuts** — `Alt+S` to open · `Alt+Q` to search selected text
+- **Custom engines** — Add any website to your search list
+- **Dark / Light mode** — Auto-follows system theme
+- **i18n** — English & Chinese interface
+
+### Engine Categories
+
+| Category | Examples |
+|----------|---------|
+| 🤖 AI Search | Perplexity · Phind · You.com · Metaso · Genspark · Felo |
+| 💬 AI Chat | ChatGPT · Claude · Gemini · DeepSeek · Kimi · Grok · Doubao |
+| 🔍 Traditional | Google · Bing · Baidu · DuckDuckGo · Yandex |
+| 📱 Social | Xiaohongshu · Douyin · Weibo · Twitter/X · Reddit |
+| 🎥 Video | YouTube · Bilibili · Xigua |
+| 👨‍💻 Developer | GitHub · Stack Overflow · MDN · NPM |
+| 🛒 Shopping | Amazon · Taobao · JD · Pinduoduo |
+| 📚 Knowledge | Wikipedia · Zhihu · Baidu Baike |
+
+### Contact & Collaboration
+
+- WeChat: hecare888
+- Telegram: [@dsds8848](https://t.me/dsds8848)
+- Twitter/X: [@Bitplus888](https://x.com/Bitplus888)
+- Email: [hefangsheng@gmail.com](mailto:hefangsheng@gmail.com)
+- GitHub: [@dongsheng123132](https://github.com/dongsheng123132)
+
+---
+
+## License
+
+MIT © [dongsheng123132](https://github.com/dongsheng123132)
