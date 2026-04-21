@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SearchHub</title>
+  <link rel="stylesheet" href="styles/index.css">
+  <style>
+    body {
+      width: 400px;
+      height: 500px;
+      margin: 0;
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .quick-actions button {
+      flex: 1;
+      padding: 8px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 SearchHub</h1>
+      <p class="subtitle">One search, all results</p>
+    </header>
+
+    <div class="quick-actions">
+      <button id="openFullPage" class="secondary-button" data-i18n="openFullPage">完整界面</button>
+      <button id="openSettings" class="secondary-button" data-i18n="openSettings">设置</button>
+    </div>
+
+    <section class="search-section">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          data-i18n-placeholder="searchPlaceholder"
+          placeholder="输入搜索关键词..."
+          autofocus
+        />
+        <button id="searchButton" class="primary-button" data-i18n="searchButton">Search</button>
+      </div>
+
+      <div class="quick-combos" id="quickCombos"></div>
+    </section>
+
+    <section class="engine-selection">
+      <div class="section-header">
+        <h2 data-i18n="selectEngines">选择搜索引擎</h2>
+        <div class="selection-controls">
+          <button id="selectAll" class="link-button" data-i18n="selectAll">全选</button>
+          <button id="clearAll" class="link-button" data-i18n="clearAll">清空</button>
+        </div>
+      </div>
+
+      <div id="engineCategories"></div>
+    </section>
+
+    <footer style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color); text-align: center; font-size: 12px; color: var(--text-secondary);">
+      <p data-i18n="footerHint">Alt+S: 打开 SearchHub | 首次搜索后点击侧边栏图标查看垂直标签</p>
+    </footer>
+  </div>
+
+  <script src="scripts/config.js"></script>
+  <script src="scripts/i18n.js"></script>
+  <script src="popup.js"></script>
+  <script>
+    // Initialize i18n for popup
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof updateUILanguage === 'function') {
+        updateUILanguage();
+      }
+    });
+  </script>
+</body>
+</html>

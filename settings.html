@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SearchHub Settings</title>
+  <link rel="stylesheet" href="styles/settings.css">
+</head>
+<body>
+  <div class="settings-container">
+    <!-- Header -->
+    <header class="settings-header">
+      <div class="header-content">
+        <button class="back-btn" id="backBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back</span>
+        </button>
+        <h1>Settings</h1>
+        <button class="icon-btn" id="themeToggle" title="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Settings Sections -->
+    <div class="settings-content">
+      <!-- Appearance -->
+      <section class="settings-section">
+        <h2>Appearance</h2>
+        <div class="setting-item">
+          <div class="setting-info">
+            <label>Theme</label>
+            <p>Choose your preferred color theme</p>
+          </div>
+          <select id="themeSelect" class="select-input">
+            <option value="auto">Auto (System)</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- Search Behavior -->
+      <section class="settings-section">
+        <h2>Search Behavior</h2>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label>Open Mode</label>
+            <p>How to open search results</p>
+          </div>
+          <select id="openModeSelect" class="select-input">
+            <option value="tab">New Tabs</option>
+            <option value="window">New Windows</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label>Group Tabs</label>
+            <p>Group search result tabs together</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="groupTabsToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label>Collapse Groups</label>
+            <p>Auto-collapse tab groups</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="collapsedGroupsToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label>Show Sidebar</label>
+            <p>Show sidebar after search</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="showSidebarToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <label>Remember Input</label>
+            <p>Keep last search query in input</p>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" id="rememberInputToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </section>
+
+      <!-- Custom Combos -->
+      <section class="settings-section">
+        <div class="section-header">
+          <h2>Quick Combos</h2>
+          <button class="btn-primary" id="addComboBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Combo
+          </button>
+        </div>
+        <div class="combos-list" id="combosList">
+          <!-- Will be populated by JS -->
+        </div>
+      </section>
+
+      <!-- Custom Engines -->
+      <section class="settings-section">
+        <div class="section-header">
+          <h2>Custom Search Engines</h2>
+          <button class="btn-primary" id="addEngineBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Engine
+          </button>
+        </div>
+        <div class="custom-engines-list" id="customEnginesList">
+          <!-- Will be populated by JS -->
+        </div>
+      </section>
+
+      <!-- Data Management -->
+      <section class="settings-section">
+        <h2>Data Management</h2>
+
+        <div class="setting-item">
+          <button class="btn-secondary" id="exportBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Export Settings
+          </button>
+        </div>
+
+        <div class="setting-item">
+          <button class="btn-secondary" id="importBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            Import Settings
+          </button>
+          <input type="file" id="importFile" accept=".json" style="display: none;">
+        </div>
+
+        <div class="setting-item">
+          <button class="btn-danger" id="resetBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <polyline points="23 20 23 14 17 14"></polyline>
+              <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path>
+            </svg>
+            Reset to Defaults
+          </button>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="settings-section">
+        <h2>About</h2>
+        <div class="about-info">
+          <p><strong>SearchHub</strong> v1.0.0</p>
+          <p>One search, all results - Smart multi-engine search with better UX</p>
+          <p class="shortcuts-info">
+            <strong>Keyboard Shortcuts:</strong><br>
+            <kbd>Alt+S</kbd> - Open SearchHub<br>
+            <kbd>Alt+Q</kbd> - Search selected text
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Add Combo Modal -->
+  <div class="modal" id="comboModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Quick Combo</h3>
+        <button class="modal-close" id="closeComboModal">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Combo Name</label>
+          <input type="text" id="comboName" placeholder="e.g., 🚀 My Favorite" class="text-input">
+        </div>
+        <div class="form-group">
+          <label>Select Engines</label>
+          <div id="comboEnginesList" class="checkbox-list">
+            <!-- Will be populated by JS -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelComboBtn">Cancel</button>
+        <button class="btn-primary" id="saveComboBtn">Save Combo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Engine Modal -->
+  <div class="modal" id="engineModal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Add Custom Engine</h3>
+        <button class="modal-close" id="closeEngineModal">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Engine Name</label>
+          <input type="text" id="engineName" placeholder="e.g., My Custom Search" class="text-input">
+        </div>
+        <div class="form-group">
+          <label>Search URL</label>
+          <input type="text" id="engineUrl" placeholder="https://example.com/search?q=%s" class="text-input">
+          <p class="help-text">Use %s where the search query should be inserted</p>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" id="engineDesc" placeholder="Short description" class="text-input">
+        </div>
+        <div class="form-group">
+          <label>Category</label>
+          <select id="engineCategory" class="select-input">
+            <option value="custom">Custom</option>
+            <option value="aiSearch">AI Search</option>
+            <option value="traditional">Search Engines</option>
+            <option value="social">Social Media</option>
+            <option value="developer">Developer</option>
+            <option value="shopping">Shopping</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="cancelEngineBtn">Cancel</button>
+        <button class="btn-primary" id="saveEngineBtn">Save Engine</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/config.js"></script>
+  <script src="scripts/settings.js"></script>
+</body>
+</html>

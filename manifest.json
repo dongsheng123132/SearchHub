@@ -1,0 +1,94 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extName__",
+  "version": "1.2.5",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
+  "author": "dosen-hecare+",
+  "homepage_url": "https://www.hequbing.com",
+
+  "action": {
+    "default_title": "AI Search Hub",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_popup": ""
+  },
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "tabGroups",
+    "sidePanel",
+    "windows",
+    "contextMenus",
+    "storage",
+    "scripting",
+    "notifications",
+    "system.display"
+  ],
+
+  "host_permissions": [],
+
+  "side_panel": {
+    "default_path": "sidebar.html"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://chatglm.cn/*",
+        "https://www.doubao.com/*",
+        "https://yiyan.baidu.com/*",
+        "https://tongyi.aliyun.com/*",
+        "https://kimi.moonshot.cn/*",
+        "https://www.perplexity.ai/*",
+        "https://www.phind.com/*",
+        "https://you.com/*",
+        "https://thinkany.ai/*",
+        "https://metaso.cn/*",
+        "https://chat.deepseek.com/*",
+        "https://yuanbao.tencent.com/*",
+        "https://z.ai/*",
+        "https://manus.im/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Open SearchHub"
+    },
+    "search_selected": {
+      "suggested_key": {
+        "default": "Alt+Q",
+        "mac": "Command+Shift+Q"
+      },
+      "description": "Search selected text"
+    }
+  }
+}

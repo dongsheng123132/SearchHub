@@ -1,0 +1,38 @@
+SearchHub is a multi‑engine search tool that opens your queries across multiple search engines in organized tab groups. It streamlines research by combining AI search, traditional search, developer resources, social and video platforms.
+
+## Features
+- **One input → multiple results**: Simultaneously search across Google, ChatGPT, Claude, and more.
+- **Organized Chrome Tab Groups**: Automatically groups search results by query to keep your workspace clean.
+- **Vertical Sidebar**: View and manage your search tabs efficiently in a side panel.
+- **Quick Combos**: One-click access to popular engine sets (e.g., "AI Chat", "Dev Tools").
+- **Custom Engines**: Add your own search engines and save your preferences.
+- **Keyboard Shortcuts**: 
+  - `Alt+S`: Open SearchHub
+  - `Alt+Q`: Search selected text immediately
+
+## How It Works
+1. Click the extension icon or press `Alt+S`.
+2. Select your desired engines (or use a Quick Combo).
+3. Enter your query and hit Search.
+4. Results open in a new Tab Group, keeping your browser organized.
+5. Use the sidebar to manage open tabs and groups.
+
+## Permissions
+SearchHub respects your privacy and requests only the minimum permissions needed to function:
+
+- `tabs` & `tabGroups`: To create new tabs for your search results and organize them into groups.
+- `sidePanel`: To display the vertical tabs sidebar for better management.
+- `scripting`: To read the text you select when you use the "Search selected text" feature (Alt+Q).
+- `notifications`: To show small alerts (e.g., if you try to search without selecting an engine).
+- `system.display`: To optimize the window layout when opening multiple results.
+
+**Note on Site Access**: 
+SearchHub does **NOT** read or change data on all websites. It only interacts with specific search engine domains (like google.com, chatgpt.com) to perform the searches you initiate.
+
+## Privacy Policy
+- **No Tracking**: We do not collect, store, or transmit your personal data.
+- **Local Storage**: Your settings (custom engines, theme preferences) are stored locally on your device using `chrome.storage`.
+- **Transparency**: The extension only runs when you explicitly trigger a search.
+
+---
+*Boost your productivity with the power of multi-engine AI search.*

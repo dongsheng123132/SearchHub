@@ -1,0 +1,16 @@
+{
+  "extName": {
+    "message": "AI Search Hub"
+  },
+  "extDescription": {
+    "message": "One input, search everywhere - Multi-engine AI search tool"
+  },
+  "pleaseEnterQuery": {
+    "message": "Please enter a search query",
+    "description": "Empty query error"
+  },
+  "pleaseSelectEngines": {
+    "message": "Please select at least one search engine",
+    "description": "No engines selected error"
+  }
+}

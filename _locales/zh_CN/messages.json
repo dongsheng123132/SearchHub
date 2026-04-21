@@ -1,0 +1,287 @@
+{
+  "extName": {
+    "message": "AI Search Hub",
+    "description": "扩展名称"
+  },
+  "extDescription": {
+    "message": "一次输入，同时搜索多个 AI 与传统搜索引擎",
+    "description": "扩展描述"
+  },
+  "extSubtitle": {
+    "message": "一次搜索，全部结果",
+    "description": "扩展副标题"
+  },
+
+  "searchPlaceholder": {
+    "message": "输入搜索关键词...",
+    "description": "搜索框占位符"
+  },
+  "searchButton": {
+    "message": "搜索",
+    "description": "搜索按钮"
+  },
+
+  "selectEngines": {
+    "message": "选择搜索引擎",
+    "description": "选择引擎标题"
+  },
+  "selectAll": {
+    "message": "全选",
+    "description": "全选按钮"
+  },
+  "clearAll": {
+    "message": "清空",
+    "description": "清空按钮"
+  },
+  "enginesSelected": {
+    "message": "个引擎已选择",
+    "description": "已选引擎数量"
+  },
+
+  "quickCombos": {
+    "message": "快速组合",
+    "description": "快速组合标题"
+  },
+
+  "settings": {
+    "message": "设置",
+    "description": "设置"
+  },
+  "openSettings": {
+    "message": "设置",
+    "description": "打开设置按钮"
+  },
+  "openFullPage": {
+    "message": "完整界面",
+    "description": "打开完整界面按钮"
+  },
+
+  "categoryAISearch": {
+    "message": "AI 搜索",
+    "description": "AI搜索分类"
+  },
+  "categoryAIChat": {
+    "message": "AI 对话",
+    "description": "AI对话分类"
+  },
+  "categoryTraditional": {
+    "message": "传统搜索",
+    "description": "传统搜索分类"
+  },
+  "categorySocial": {
+    "message": "社交媒体",
+    "description": "社交媒体分类"
+  },
+  "categoryVideo": {
+    "message": "视频",
+    "description": "视频分类"
+  },
+  "categoryDeveloper": {
+    "message": "开发者",
+    "description": "开发者分类"
+  },
+  "categoryShopping": {
+    "message": "购物",
+    "description": "购物分类"
+  },
+  "categoryKnowledge": {
+    "message": "知识",
+    "description": "知识分类"
+  },
+
+  "comboAIAll": {
+    "message": "全部 AI",
+    "description": "全部AI组合"
+  },
+  "comboMainstream": {
+    "message": "主流搜索",
+    "description": "主流搜索组合"
+  },
+  "comboChinese": {
+    "message": "中文平台",
+    "description": "中文平台组合"
+  },
+  "comboDev": {
+    "message": "开发者",
+    "description": "开发者组合"
+  },
+
+  "settingsTitle": {
+    "message": "SearchHub 设置",
+    "description": "设置页面标题"
+  },
+  "settingsAppearance": {
+    "message": "外观",
+    "description": "外观设置部分"
+  },
+  "settingsTheme": {
+    "message": "主题",
+    "description": "主题设置"
+  },
+  "settingsThemeLight": {
+    "message": "浅色",
+    "description": "浅色主题"
+  },
+  "settingsThemeDark": {
+    "message": "深色",
+    "description": "深色主题"
+  },
+  "settingsThemeAuto": {
+    "message": "自动",
+    "description": "自动主题"
+  },
+  "settingsLanguage": {
+    "message": "语言",
+    "description": "语言设置"
+  },
+
+  "settingsBehavior": {
+    "message": "搜索行为",
+    "description": "行为设置部分"
+  },
+  "settingsOpenMode": {
+    "message": "打开方式",
+    "description": "打开方式设置"
+  },
+  "settingsOpenModeTabs": {
+    "message": "标签页",
+    "description": "标签页模式"
+  },
+  "settingsOpenModeWindows": {
+    "message": "窗口",
+    "description": "窗口模式"
+  },
+  "settingsGroupTabs": {
+    "message": "分组标签页",
+    "description": "分组标签页设置"
+  },
+  "settingsCollapsedGroups": {
+    "message": "默认折叠分组",
+    "description": "默认折叠分组设置"
+  },
+  "settingsShowSidebar": {
+    "message": "显示侧边栏",
+    "description": "显示侧边栏设置"
+  },
+
+  "settingsCustomEngines": {
+    "message": "自定义搜索引擎",
+    "description": "自定义引擎部分"
+  },
+  "settingsAddEngine": {
+    "message": "添加自定义引擎",
+    "description": "添加引擎按钮"
+  },
+  "settingsEngineName": {
+    "message": "引擎名称",
+    "description": "引擎名称字段"
+  },
+  "settingsEngineURL": {
+    "message": "搜索 URL（用 %s 表示查询词）",
+    "description": "引擎URL字段"
+  },
+
+  "settingsDataManagement": {
+    "message": "数据管理",
+    "description": "数据管理部分"
+  },
+  "settingsExport": {
+    "message": "导出设置",
+    "description": "导出设置按钮"
+  },
+  "settingsImport": {
+    "message": "导入设置",
+    "description": "导入设置按钮"
+  },
+  "settingsReset": {
+    "message": "恢复默认",
+    "description": "重置设置按钮"
+  },
+
+  "settingsSave": {
+    "message": "保存设置",
+    "description": "保存设置按钮"
+  },
+  "settingsSaved": {
+    "message": "设置已保存！",
+    "description": "设置已保存提示"
+  },
+
+  "sidebarTitle": {
+    "message": "垂直标签页",
+    "description": "侧边栏标题"
+  },
+  "sidebarRefresh": {
+    "message": "刷新",
+    "description": "刷新按钮"
+  },
+  "sidebarCollapseAll": {
+    "message": "全部折叠",
+    "description": "全部折叠按钮"
+  },
+  "sidebarExpandAll": {
+    "message": "全部展开",
+    "description": "全部展开按钮"
+  },
+  "sidebarLatest": {
+    "message": "最近",
+    "description": "最近搜索标签"
+  },
+  "sidebarUngrouped": {
+    "message": "未分组标签",
+    "description": "未分组标签部分"
+  },
+  "sidebarNoTabs": {
+    "message": "当前窗口没有标签页",
+    "description": "无标签提示"
+  },
+
+  "contextMenuSearch": {
+    "message": "使用 SearchHub 搜索",
+    "description": "右键菜单搜索项"
+  },
+  "contextMenuSettings": {
+    "message": "SearchHub 设置",
+    "description": "右键菜单设置项"
+  },
+
+  "notificationNoEngines": {
+    "message": "请先选择搜索引擎",
+    "description": "未选择引擎提示"
+  },
+  "notificationOpenSearchHub": {
+    "message": "打开 SearchHub 选择引擎",
+    "description": "打开SearchHub提示"
+  },
+
+  "footerHint": {
+    "message": "Alt+S: 打开 SearchHub | 首次搜索后点击侧边栏图标查看垂直标签",
+    "description": "页脚提示文本"
+  },
+
+  "confirmReset": {
+    "message": "确定要将所有设置恢复为默认值吗？",
+    "description": "重置确认消息"
+  },
+  "confirmDelete": {
+    "message": "删除此自定义引擎？",
+    "description": "删除引擎确认"
+  },
+
+  "errorInvalidURL": {
+    "message": "请输入包含 %s 占位符的有效 URL",
+    "description": "无效URL错误"
+  },
+  "errorEmptyName": {
+    "message": "请输入引擎名称",
+    "description": "空名称错误"
+  },
+  "pleaseEnterQuery": {
+    "message": "请输入搜索关键词",
+    "description": "空查询错误"
+  },
+  "pleaseSelectEngines": {
+    "message": "请至少选择一个搜索引擎",
+    "description": "未选择引擎错误"
+  }
+}

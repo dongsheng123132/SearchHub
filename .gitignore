@@ -1,0 +1,19 @@
+# Archives and Builds
+*.zip
+*.crx
+temp_package_*
+
+# System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE Settings
+.claude/
+.vscode/
+.idea/
+
+# Temporary/Backup Files
+*.bak
+*.old
+*.tmp
