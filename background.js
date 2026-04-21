@@ -277,7 +277,7 @@ function findDefaultEngineById(engineId) {
     'you': { url: 'https://you.com/search?q=%s', name: 'You.com' },
     'thinkanai': { url: 'https://thinkany.ai/search?q=%s', name: 'ThinkAny' },
     'metaso': { url: 'https://metaso.cn/?q=%s', name: 'Metaso' },
-    'pi': { url: 'https://pi.ai/search?q=%s', name: 'Pi' },
+    'pi': { url: 'https://pi.ai/talk?q=%s', name: 'Pi' },
     'devv': { url: 'https://devv.ai/search?q=%s', name: 'Devv' },
     'consensus': { url: 'https://consensus.app/search?q=%s', name: 'Consensus' },
     'semantic': { url: 'https://www.semanticscholar.org/search?q=%s', name: 'Semantic Scholar' },
@@ -298,6 +298,7 @@ function findDefaultEngineById(engineId) {
     'felo': { url: 'https://felo.ai/search?q=%s', name: 'Felo' },
     'deepseek': { url: 'https://chat.deepseek.com/?q=%s', name: 'DeepSeek' },
     'hunyuan': { url: 'https://yuanbao.tencent.com/chat?q=%s', name: 'Yuanbao' },
+    'manus': { url: 'https://manus.im/app?q=%s', name: 'Manus' },
 
     // Social
     'xiaohongshu': { url: 'https://www.xiaohongshu.com/search_result?keyword=%s', name: 'Xiaohongshu' },

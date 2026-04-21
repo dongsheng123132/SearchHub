@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_extName__",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "__MSG_extDescription__",
   "default_locale": "en",
   "author": "dosen-hecare+",
@@ -52,6 +52,7 @@
     {
       "matches": [
         "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
         "https://claude.ai/*",
         "https://gemini.google.com/*",
         "https://chatglm.cn/*",
@@ -66,7 +67,7 @@
         "https://metaso.cn/*",
         "https://chat.deepseek.com/*",
         "https://yuanbao.tencent.com/*",
-        "https://z.ai/*",
+        "https://grok.com/*",
         "https://manus.im/*"
       ],
       "js": ["content.js"],
