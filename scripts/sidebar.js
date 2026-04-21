@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   await initialize();
   attachEventListeners();
   startListening();
-  if (typeof updateUILanguage === 'function') {
-    updateUILanguage();
-  }
+  if (typeof initLanguage === 'function') await initLanguage();
+  if (typeof updateUILanguage === 'function') updateUILanguage();
 });
 
 async function initialize() {

@@ -58,6 +58,10 @@ function populateSettings() {
   // Theme
   document.getElementById('themeSelect').value = settings.theme;
 
+  // Language
+  const langEl = document.getElementById('languageSelect');
+  if (langEl) langEl.value = settings.language || 'en';
+
   // Open mode
   document.getElementById('openModeSelect').value = settings.openMode;
 
@@ -163,6 +167,16 @@ function attachEventListeners() {
 
   // Theme toggle
   document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+  // Language select
+  const langEl = document.getElementById('languageSelect');
+  if (langEl) {
+    langEl.addEventListener('change', (e) => {
+      settings.language = e.target.value;
+      saveSettings();
+      try { chrome.runtime.sendMessage({ action: 'languageChanged', lang: e.target.value }); } catch (_) {}
+    });
+  }
 
   // Theme select
   document.getElementById('themeSelect').addEventListener('change', (e) => {

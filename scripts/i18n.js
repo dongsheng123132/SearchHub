@@ -1,34 +1,24 @@
 // Internationalization (i18n) support
-// Supports both built-in translations and Chrome Extension i18n API
 
 const i18n = {
   en: {
-    // Header
     title: 'SearchHub',
     themeToggle: 'Toggle theme',
     compactMode: 'Compact mode',
     editMode: 'Edit mode',
     settings: 'Settings',
-
-    // Search
     searchPlaceholder: 'Search anything across all engines...',
     search: 'Search',
     enginesSelected: 'engines selected',
-
-    // Categories
     engines: 'engines',
     expand: 'Expand',
     collapse: 'Collapse',
     selectAll: 'Select all engines in this category',
-
-    // Combos
     saveAsCombo: 'Save as combo',
     deleteCombo: 'Delete combo',
     editCombo: 'Edit combo',
     confirmDeleteCombo: 'Are you sure you want to delete this custom combo?',
     editComboName: 'Enter new combo name:',
-
-    // Edit mode
     addEngine: 'Add engine',
     editEngine: 'Edit engine',
     deleteEngine: 'Delete engine',
@@ -39,11 +29,7 @@ const i18n = {
     cancel: 'Cancel',
     save: 'Save',
     confirmDelete: 'Are you sure you want to delete this engine?',
-
-    // Footer
     footer: 'Press <kbd>Alt+S</kbd> to open • <kbd>Alt+Q</kbd> to search selected text',
-
-    // Messages
     noEnginesSelected: 'Please select at least one search engine',
     maxCustomCombos: 'You can only save 5 custom combos. Please delete one first.',
     enterComboName: 'Enter combo name:',
@@ -55,18 +41,13 @@ const i18n = {
     enterDescription: 'Description:',
     pleaseEnterQuery: 'Please enter a search query',
     pleaseSelectEngines: 'Please select at least one search engine',
-
-    // Edit engine modal
     editEngineTitle: 'Edit Engine',
-
-    // Add engine
     addEngineTitle: 'Add Engine',
     addCustomEngine: 'Add Custom Engine',
     enterEngineNamePrompt: 'Engine name:',
     enterSearchUrlPrompt: 'Search URL (must contain %s):',
     urlFormatIncorrect: 'URL format is incorrect',
     pleaseEnterEngineName: 'Please enter an engine name',
-    urlMustContainPlaceholder: 'URL must contain %s placeholder',
     invalidUrlFormat: 'Invalid URL format. Please check and try again.',
     pleaseEnterComboName: 'Please enter combo name',
     descriptionOptional: 'Description (optional)',
@@ -74,10 +55,7 @@ const i18n = {
     exampleGoogle: 'e.g., Google',
     examplePopularSearch: 'e.g., Popular search engine',
     exampleUrl: 'https://www.google.com/search?q=%s',
-
-    // Language names
-    languageEnglish: 'English',
-    languageChinese: '中文',
+    language: 'Language',
     verticalTabs: 'Vertical Tabs',
     collapseAll: 'Collapse All Groups',
     refresh: 'Refresh',
@@ -93,32 +71,23 @@ const i18n = {
   },
 
   zh: {
-    // Header
     title: 'SearchHub',
     themeToggle: '切换主题',
     compactMode: '紧凑模式',
     editMode: '编辑模式',
     settings: '设置',
-
-    // Search
     searchPlaceholder: '在所有引擎中搜索...',
     search: '搜索',
     enginesSelected: '个引擎已选择',
-
-    // Categories
     engines: '个引擎',
     expand: '展开',
     collapse: '折叠',
     selectAll: '选择该类目下所有引擎',
-
-    // Combos
     saveAsCombo: '保存为组合',
     deleteCombo: '删除组合',
     editCombo: '编辑组合',
     confirmDeleteCombo: '确定要删除这个自定义组合吗？',
     editComboName: '请输入新的组合名称：',
-
-    // Edit mode
     addEngine: '添加引擎',
     editEngine: '编辑引擎',
     deleteEngine: '删除引擎',
@@ -129,11 +98,7 @@ const i18n = {
     cancel: '取消',
     save: '保存',
     confirmDelete: '确定要删除这个引擎吗？',
-
-    // Footer
     footer: '按 <kbd>Alt+S</kbd> 打开 • <kbd>Alt+Q</kbd> 搜索选中文字',
-
-    // Messages
     noEnginesSelected: '请先选择至少一个搜索引擎',
     maxCustomCombos: '最多只能保存5个自定义组合，请先删除一个',
     enterComboName: '请输入组合名称：',
@@ -145,18 +110,13 @@ const i18n = {
     enterDescription: '描述：',
     pleaseEnterQuery: '请输入搜索关键词',
     pleaseSelectEngines: '请至少选择一个搜索引擎',
-
-    // Edit engine modal
     editEngineTitle: '编辑引擎',
-
-    // Add engine
     addEngineTitle: '添加引擎',
     addCustomEngine: '添加自定义引擎',
     enterEngineNamePrompt: '引擎名称：',
     enterSearchUrlPrompt: '搜索URL（必须包含 %s）：',
     urlFormatIncorrect: 'URL格式不正确',
     pleaseEnterEngineName: '请输入引擎名称',
-    urlMustContainPlaceholder: 'URL必须包含 %s 占位符',
     invalidUrlFormat: 'URL格式无效，请检查后重试',
     pleaseEnterComboName: '请输入组合名称',
     descriptionOptional: '描述（可选）',
@@ -164,10 +124,7 @@ const i18n = {
     exampleGoogle: '例如：Google',
     examplePopularSearch: '例如：流行的搜索引擎',
     exampleUrl: 'https://www.google.com/search?q=%s',
-
-    // Language names
-    languageEnglish: 'English',
-    languageChinese: '中文',
+    language: '语言',
     verticalTabs: '垂直标签页',
     collapseAll: '全部折叠',
     refresh: '刷新',
@@ -180,98 +137,202 @@ const i18n = {
     tabsWord: '个标签页',
     closeTab: '关闭标签',
     ungroup: '取消分组'
+  },
+
+  es: {
+    title: 'SearchHub',
+    themeToggle: 'Cambiar tema',
+    compactMode: 'Modo compacto',
+    editMode: 'Modo edición',
+    settings: 'Ajustes',
+    searchPlaceholder: 'Busca en todos los motores...',
+    search: 'Buscar',
+    enginesSelected: 'motores seleccionados',
+    engines: 'motores',
+    expand: 'Expandir',
+    collapse: 'Contraer',
+    selectAll: 'Seleccionar todos los motores de esta categoría',
+    saveAsCombo: 'Guardar como combo',
+    deleteCombo: 'Eliminar combo',
+    editCombo: 'Editar combo',
+    confirmDeleteCombo: '¿Seguro que quieres eliminar este combo?',
+    editComboName: 'Introduce el nuevo nombre del combo:',
+    addEngine: 'Añadir motor',
+    editEngine: 'Editar motor',
+    deleteEngine: 'Eliminar motor',
+    engineName: 'Nombre del motor',
+    searchUrl: 'URL de búsqueda',
+    urlPlaceholder: 'Debe contener %s',
+    logoAutoUpdate: 'El logo se actualizará automáticamente según la URL',
+    cancel: 'Cancelar',
+    save: 'Guardar',
+    confirmDelete: '¿Seguro que quieres eliminar este motor?',
+    footer: 'Pulsa <kbd>Alt+S</kbd> para abrir • <kbd>Alt+Q</kbd> para buscar texto seleccionado',
+    noEnginesSelected: 'Por favor selecciona al menos un motor de búsqueda',
+    maxCustomCombos: 'Solo puedes guardar 5 combos. Elimina uno primero.',
+    enterComboName: 'Nombre del combo:',
+    urlMustContainPlaceholder: 'La URL debe contener el marcador %s',
+    defaultEngineCannotEdit: 'Los motores predeterminados no se pueden editar directamente. ¿Crear una copia?',
+    urlFormatError: 'Formato de URL incorrecto, compruébalo',
+    enterEngineName: 'Nombre del motor:',
+    enterSearchUrl: 'URL de búsqueda (debe contener %s):',
+    enterDescription: 'Descripción:',
+    pleaseEnterQuery: 'Por favor introduce un término de búsqueda',
+    pleaseSelectEngines: 'Por favor selecciona al menos un motor de búsqueda',
+    editEngineTitle: 'Editar motor',
+    addEngineTitle: 'Añadir motor',
+    addCustomEngine: 'Añadir motor personalizado',
+    enterEngineNamePrompt: 'Nombre del motor:',
+    enterSearchUrlPrompt: 'URL de búsqueda (debe contener %s):',
+    urlFormatIncorrect: 'Formato de URL incorrecto',
+    pleaseEnterEngineName: 'Por favor introduce el nombre del motor',
+    invalidUrlFormat: 'Formato de URL no válido. Comprueba e inténtalo de nuevo.',
+    pleaseEnterComboName: 'Por favor introduce el nombre del combo',
+    descriptionOptional: 'Descripción (opcional)',
+    logoAutoGenerated: 'El logo se generará automáticamente desde la URL',
+    exampleGoogle: 'ej., Google',
+    examplePopularSearch: 'ej., Motor de búsqueda popular',
+    exampleUrl: 'https://www.google.com/search?q=%s',
+    language: 'Idioma',
+    verticalTabs: 'Pestañas verticales',
+    collapseAll: 'Contraer todos los grupos',
+    refresh: 'Actualizar',
+    openSearchHubBtn: 'Abrir SearchHub',
+    latestPrefix: 'Último:',
+    noTabs: 'No hay pestañas',
+    openSomeTabs: 'Abre pestañas para verlas aquí',
+    otherTabs: 'Otras pestañas',
+    untitledGroup: 'Grupo sin título',
+    tabsWord: 'pestañas',
+    closeTab: 'Cerrar pestaña',
+    ungroup: 'Desagrupar'
+  },
+
+  fr: {
+    title: 'SearchHub',
+    themeToggle: 'Changer le thème',
+    compactMode: 'Mode compact',
+    editMode: 'Mode édition',
+    settings: 'Paramètres',
+    searchPlaceholder: 'Recherchez sur tous les moteurs...',
+    search: 'Rechercher',
+    enginesSelected: 'moteurs sélectionnés',
+    engines: 'moteurs',
+    expand: 'Développer',
+    collapse: 'Réduire',
+    selectAll: 'Sélectionner tous les moteurs de cette catégorie',
+    saveAsCombo: 'Enregistrer comme combo',
+    deleteCombo: 'Supprimer le combo',
+    editCombo: 'Modifier le combo',
+    confirmDeleteCombo: 'Voulez-vous vraiment supprimer ce combo ?',
+    editComboName: 'Entrez le nouveau nom du combo :',
+    addEngine: 'Ajouter un moteur',
+    editEngine: 'Modifier le moteur',
+    deleteEngine: 'Supprimer le moteur',
+    engineName: 'Nom du moteur',
+    searchUrl: 'URL de recherche',
+    urlPlaceholder: 'Doit contenir %s',
+    logoAutoUpdate: 'Le logo sera mis à jour automatiquement selon l\'URL',
+    cancel: 'Annuler',
+    save: 'Enregistrer',
+    confirmDelete: 'Voulez-vous vraiment supprimer ce moteur ?',
+    footer: 'Appuyez sur <kbd>Alt+S</kbd> pour ouvrir • <kbd>Alt+Q</kbd> pour rechercher le texte sélectionné',
+    noEnginesSelected: 'Veuillez sélectionner au moins un moteur de recherche',
+    maxCustomCombos: 'Vous ne pouvez enregistrer que 5 combos. Supprimez-en un d\'abord.',
+    enterComboName: 'Nom du combo :',
+    urlMustContainPlaceholder: 'L\'URL doit contenir l\'espace réservé %s',
+    defaultEngineCannotEdit: 'Les moteurs par défaut ne peuvent pas être modifiés directement. Créer une copie ?',
+    urlFormatError: 'Format d\'URL incorrect, vérifiez',
+    enterEngineName: 'Nom du moteur :',
+    enterSearchUrl: 'URL de recherche (doit contenir %s) :',
+    enterDescription: 'Description :',
+    pleaseEnterQuery: 'Veuillez entrer un terme de recherche',
+    pleaseSelectEngines: 'Veuillez sélectionner au moins un moteur de recherche',
+    editEngineTitle: 'Modifier le moteur',
+    addEngineTitle: 'Ajouter un moteur',
+    addCustomEngine: 'Ajouter un moteur personnalisé',
+    enterEngineNamePrompt: 'Nom du moteur :',
+    enterSearchUrlPrompt: 'URL de recherche (doit contenir %s) :',
+    urlFormatIncorrect: 'Format d\'URL incorrect',
+    pleaseEnterEngineName: 'Veuillez entrer le nom du moteur',
+    invalidUrlFormat: 'Format d\'URL invalide. Vérifiez et réessayez.',
+    pleaseEnterComboName: 'Veuillez entrer le nom du combo',
+    descriptionOptional: 'Description (optionnelle)',
+    logoAutoGenerated: 'Le logo sera généré automatiquement depuis l\'URL',
+    exampleGoogle: 'ex., Google',
+    examplePopularSearch: 'ex., Moteur de recherche populaire',
+    exampleUrl: 'https://www.google.com/search?q=%s',
+    language: 'Langue',
+    verticalTabs: 'Onglets verticaux',
+    collapseAll: 'Réduire tous les groupes',
+    refresh: 'Actualiser',
+    openSearchHubBtn: 'Ouvrir SearchHub',
+    latestPrefix: 'Dernier :',
+    noTabs: 'Aucun onglet',
+    openSomeTabs: 'Ouvrez des onglets pour les voir ici',
+    otherTabs: 'Autres onglets',
+    untitledGroup: 'Groupe sans titre',
+    tabsWord: 'onglets',
+    closeTab: 'Fermer l\'onglet',
+    ungroup: 'Dégrouper'
   }
 };
 
-// Get current language (async version that uses chrome.storage)
-async function getCurrentLanguageAsync() {
-  try {
-    // First try to get from chrome.storage.sync
-    const result = await chrome.storage.sync.get(['settings']);
-    if (result.settings?.language) {
-      const lang = result.settings.language;
-      if (lang === 'auto') {
-        const browserLang = navigator.language || navigator.userLanguage;
-        return browserLang.startsWith('zh') ? 'zh' : 'en';
-      }
-      return lang === 'zh' ? 'zh' : 'en';
-    }
-  } catch (error) {
-    console.error('Failed to load language setting:', error);
+const SUPPORTED_LANGS = ['en', 'zh', 'es', 'fr'];
+
+// Resolve a raw lang string to a supported code
+function resolveLang(lang) {
+  if (!lang || lang === 'auto') {
+    const bl = (navigator.language || '').toLowerCase();
+    if (bl.startsWith('zh')) return 'zh';
+    if (bl.startsWith('es')) return 'es';
+    if (bl.startsWith('fr')) return 'fr';
+    return 'en';
   }
-  
-  // Fallback to localStorage (for backward compatibility)
-  const stored = localStorage.getItem('searchhub_lang');
-  if (stored === 'zh' || stored === 'en') return stored;
-  
-  // Fallback to state (if available)
-  if (typeof state !== 'undefined' && state?.settings?.language) {
-    const lang = state.settings.language;
-    if (lang === 'auto') {
-      const browserLang = navigator.language || navigator.userLanguage;
-      return browserLang.startsWith('zh') ? 'zh' : 'en';
-    }
-    return lang === 'zh' ? 'zh' : 'en';
-  }
-  
-  // Final fallback to browser language
-  const browserLang = navigator.language || navigator.userLanguage;
-  return browserLang.startsWith('zh') ? 'zh' : 'en';
+  return SUPPORTED_LANGS.includes(lang) ? lang : 'en';
 }
 
-// Get current language (synchronous version for backward compatibility)
-function getCurrentLanguage() {
-  // Try localStorage first (for immediate access)
-  const stored = localStorage.getItem('searchhub_lang');
-  if (stored === 'zh' || stored === 'en') return stored;
-  
-  // Try state if available
-  if (typeof state !== 'undefined' && state?.settings?.language) {
-    const lang = state.settings.language;
-    if (lang === 'auto') {
-      const browserLang = navigator.language || navigator.userLanguage;
-      return browserLang.startsWith('zh') ? 'zh' : 'en';
-    }
-    return lang === 'zh' ? 'zh' : 'en';
+// In-memory cache — populated on first async load, updated on toggle
+let _cachedLang = null;
+
+// Async load from chrome.storage (call once on page init)
+async function initLanguage() {
+  try {
+    const result = await chrome.storage.sync.get(['settings']);
+    _cachedLang = resolveLang(result.settings?.language);
+  } catch (e) {
+    _cachedLang = resolveLang(null);
   }
-  
-  // Fallback to browser language
-  const browserLang = navigator.language || navigator.userLanguage;
-  return browserLang.startsWith('zh') ? 'zh' : 'en';
+  return _cachedLang;
+}
+
+// Synchronous read — uses cache; falls back to browser lang before cache is ready
+function getCurrentLanguage() {
+  if (_cachedLang) return _cachedLang;
+  // Pre-cache fallback: read from state if index.js already loaded settings
+  if (typeof state !== 'undefined' && state?.settings?.language) {
+    return resolveLang(state.settings.language);
+  }
+  return resolveLang(null);
 }
 
 // Get translated text
 function t(key) {
   const lang = getCurrentLanguage();
-  const translations = i18n[lang] || i18n.en;
-  return translations[key] || key;
+  return (i18n[lang] || i18n.en)[key] || (i18n.en)[key] || key;
 }
 
-// Check if current language is Chinese
-function isChineseLanguage() {
-  return getCurrentLanguage() === 'zh';
-}
-
-// Update UI language
+// Update all translatable elements in the current page
 function updateUILanguage() {
-  const lang = getCurrentLanguage();
-
-  // Update search placeholder
   const searchInput = document.getElementById('searchInput');
-  if (searchInput) {
-    searchInput.placeholder = t('searchPlaceholder');
-  }
+  if (searchInput) searchInput.placeholder = t('searchPlaceholder');
 
-  // Update search button
   const searchBtn = document.getElementById('searchBtn');
   if (searchBtn) {
     const span = searchBtn.querySelector('span');
     if (span) span.textContent = t('search');
   }
 
-  // Update selected count (will be called by updateSelectedCount)
-
-  // Update button titles
   const themeToggle = document.getElementById('themeToggle');
   if (themeToggle) themeToggle.title = t('themeToggle');
 
@@ -284,89 +345,103 @@ function updateUILanguage() {
   const settingsBtn = document.getElementById('settingsBtn');
   if (settingsBtn) settingsBtn.title = t('settings');
 
-  // Update footer
   const footer = document.querySelector('.footer p');
-  if (footer) {
-    footer.innerHTML = t('footer');
-  }
+  if (footer) footer.innerHTML = t('footer');
 
-  // Update category headers
   document.querySelectorAll('.category-toggle').forEach(btn => {
-    const grid = btn.closest('.category-header').nextElementSibling;
-    if (grid) {
-      const isCollapsed = grid.classList.contains('collapsed');
-      btn.title = isCollapsed ? t('expand') : t('collapse');
-    }
+    const grid = btn.closest('.category-header')?.nextElementSibling;
+    if (grid) btn.title = grid.classList.contains('collapsed') ? t('expand') : t('collapse');
   });
 
-  // Update data-i18n elements (for Chrome Extension i18n API support)
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    const key = element.getAttribute('data-i18n');
-    const translatedText = t(key);
-    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-      if (element.type === 'button' || element.type === 'submit') {
-        element.value = translatedText;
-      }
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (el.tagName === 'INPUT' && (el.type === 'button' || el.type === 'submit')) {
+      el.value = t(key);
     } else {
-      element.textContent = translatedText;
+      el.textContent = t(key);
     }
   });
 
-  // Update data-i18n-placeholder elements
-  document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-    const key = element.getAttribute('data-i18n-placeholder');
-    element.placeholder = t(key);
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
   });
 
-  // Update data-i18n-title elements
-  document.querySelectorAll('[data-i18n-title]').forEach(element => {
-    const key = element.getAttribute('data-i18n-title');
-    element.title = t(key);
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.title = t(el.getAttribute('data-i18n-title'));
   });
+
+  // Update language button label
+  const langText = document.getElementById('langText');
+  if (langText) {
+    const labels = { en: 'EN', zh: '中', es: 'ES', fr: 'FR' };
+    langText.textContent = labels[getCurrentLanguage()] || 'EN';
+  }
 }
 
-// Toggle language between English and Chinese
+// Cycle through languages: en → zh → es → fr → en
 async function toggleLanguage() {
-  if (typeof state !== 'undefined' && state.settings) {
-    const currentLang = getCurrentLanguage();
-    const newLang = currentLang === 'en' ? 'zh' : 'en';
-    state.settings.language = newLang;
+  const current = getCurrentLanguage();
+  const idx = SUPPORTED_LANGS.indexOf(current);
+  const next = SUPPORTED_LANGS[(idx + 1) % SUPPORTED_LANGS.length];
 
-    // Save to chrome.storage.sync (primary)
-    try {
+  _cachedLang = next;
+
+  // Persist to chrome.storage.sync
+  try {
+    if (typeof state !== 'undefined' && state.settings) {
+      state.settings.language = next;
       if (typeof saveSettings === 'function') {
         await saveSettings();
       } else {
-        // If saveSettings doesn't exist, save directly
         await chrome.storage.sync.set({ settings: state.settings });
       }
-    } catch (error) {
-      console.error('Failed to save language setting:', error);
+    } else {
+      // settings page context
+      const result = await chrome.storage.sync.get(['settings']);
+      const s = result.settings || {};
+      s.language = next;
+      await chrome.storage.sync.set({ settings: s });
     }
+  } catch (e) {
+    console.error('Failed to save language:', e);
+  }
 
-    // Also save to localStorage for backward compatibility
-    localStorage.setItem('searchhub_lang', newLang);
+  // Broadcast to all extension pages so they update without refresh
+  try {
+    chrome.runtime.sendMessage({ action: 'languageChanged', lang: next });
+  } catch (e) { /* ignore if no listeners */ }
 
-    // Update UI
+  updateUILanguage();
+
+  if (typeof updateSelectedCount === 'function') updateSelectedCount();
+
+  if (typeof renderCategories === 'function') {
+    const selectedBefore = new Set(state.selectedEngines);
+    renderCategories();
+    state.selectedEngines = selectedBefore;
+    selectedBefore.forEach(id => {
+      const card = document.querySelector(`[data-engine-id="${id}"]`);
+      if (card) card.classList.add('selected');
+    });
+    updateSelectedCount();
+  }
+}
+
+// Listen for language change broadcast from other pages
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === 'languageChanged') {
+    _cachedLang = message.lang;
     updateUILanguage();
-
-    // Update selected count if function exists
-    if (typeof updateSelectedCount === 'function') {
-      updateSelectedCount();
-    }
-
-    // Re-render categories to update engine count text
+    if (typeof updateSelectedCount === 'function') updateSelectedCount();
     if (typeof renderCategories === 'function') {
-      const selectedBefore = new Set(state.selectedEngines);
+      const selectedBefore = new Set(state?.selectedEngines || []);
       renderCategories();
       state.selectedEngines = selectedBefore;
-      // Re-apply selected state
-      selectedBefore.forEach(engineId => {
-        const card = document.querySelector(`[data-engine-id="${engineId}"]`);
+      selectedBefore.forEach(id => {
+        const card = document.querySelector(`[data-engine-id="${id}"]`);
         if (card) card.classList.add('selected');
       });
       updateSelectedCount();
     }
   }
-}
-
+});

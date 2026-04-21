@@ -10,8 +10,9 @@ let state = {
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
   await loadSettings();
+  await initLanguage(); // load language from storage before rendering
   initializeTheme();
-  updateUILanguage(); // 更新UI语言
+  updateUILanguage();
   renderCategories();
   renderQuickCombos();
   attachEventListeners();
