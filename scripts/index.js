@@ -1307,12 +1307,9 @@ function attachEventListeners() {
   // Language toggle
   const langToggle = document.getElementById('langToggle');
   if (langToggle) {
-    langToggle.addEventListener('click', () => {
-      toggleLanguage();
-      updateLanguageButton();
+    langToggle.addEventListener('click', async () => {
+      await toggleLanguage();
     });
-    // Initialize language button
-    updateLanguageButton();
   }
 
   // Theme toggle
@@ -1413,9 +1410,5 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
 
 // Update language button display
 function updateLanguageButton() {
-  const langText = document.getElementById('langText');
-  if (langText) {
-    const currentLang = getCurrentLanguage();
-    langText.textContent = currentLang === 'zh' ? '中' : 'EN';
-  }
+  // now handled inside updateUILanguage() in i18n.js
 }
