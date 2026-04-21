@@ -56,6 +56,14 @@ const i18n = {
     examplePopularSearch: 'e.g., Popular search engine',
     exampleUrl: 'https://www.google.com/search?q=%s',
     language: 'Language',
+    categoryAISearch: '🤖 AI Search',
+    categoryAIChat: '💬 AI Chat',
+    categoryTraditional: '🔍 Search Engines',
+    categorySocial: '📱 Social Media',
+    categoryVideo: '🎥 Video',
+    categoryDeveloper: '👨‍💻 Developer',
+    categoryShopping: '🛒 Shopping',
+    categoryKnowledge: '📚 Knowledge',
     verticalTabs: 'Vertical Tabs',
     collapseAll: 'Collapse All Groups',
     refresh: 'Refresh',
@@ -125,6 +133,14 @@ const i18n = {
     examplePopularSearch: '例如：流行的搜索引擎',
     exampleUrl: 'https://www.google.com/search?q=%s',
     language: '语言',
+    categoryAISearch: '🤖 AI 搜索',
+    categoryAIChat: '💬 AI 聊天',
+    categoryTraditional: '🔍 传统搜索',
+    categorySocial: '📱 社交媒体',
+    categoryVideo: '🎥 视频',
+    categoryDeveloper: '👨‍💻 开发者',
+    categoryShopping: '🛒 购物',
+    categoryKnowledge: '📚 知识库',
     verticalTabs: '垂直标签页',
     collapseAll: '全部折叠',
     refresh: '刷新',
@@ -194,6 +210,14 @@ const i18n = {
     examplePopularSearch: 'ej., Motor de búsqueda popular',
     exampleUrl: 'https://www.google.com/search?q=%s',
     language: 'Idioma',
+    categoryAISearch: '🤖 Búsqueda IA',
+    categoryAIChat: '💬 Chat IA',
+    categoryTraditional: '🔍 Buscadores',
+    categorySocial: '📱 Redes Sociales',
+    categoryVideo: '🎥 Vídeo',
+    categoryDeveloper: '👨‍💻 Desarrollador',
+    categoryShopping: '🛒 Compras',
+    categoryKnowledge: '📚 Conocimiento',
     verticalTabs: 'Pestañas verticales',
     collapseAll: 'Contraer todos los grupos',
     refresh: 'Actualizar',
@@ -263,6 +287,14 @@ const i18n = {
     examplePopularSearch: 'ex., Moteur de recherche populaire',
     exampleUrl: 'https://www.google.com/search?q=%s',
     language: 'Langue',
+    categoryAISearch: '🤖 Recherche IA',
+    categoryAIChat: '💬 Chat IA',
+    categoryTraditional: '🔍 Moteurs de recherche',
+    categorySocial: '📱 Réseaux sociaux',
+    categoryVideo: '🎥 Vidéo',
+    categoryDeveloper: '👨‍💻 Développeur',
+    categoryShopping: '🛒 Shopping',
+    categoryKnowledge: '📚 Connaissance',
     verticalTabs: 'Onglets verticaux',
     collapseAll: 'Réduire tous les groupes',
     refresh: 'Actualiser',
@@ -289,7 +321,9 @@ function resolveLang(lang) {
     if (bl.startsWith('fr')) return 'fr';
     return 'en';
   }
-  return SUPPORTED_LANGS.includes(lang) ? lang : 'en';
+  // normalize zh_CN / zh-CN → zh
+  const normalized = lang.toLowerCase().startsWith('zh') ? 'zh' : lang;
+  return SUPPORTED_LANGS.includes(normalized) ? normalized : 'en';
 }
 
 // In-memory cache — populated on first async load, updated on toggle
