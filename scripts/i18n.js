@@ -450,14 +450,14 @@ async function toggleLanguage() {
   if (typeof updateSelectedCount === 'function') updateSelectedCount();
 
   if (typeof renderCategories === 'function') {
-    const selectedBefore = new Set(state.selectedEngines);
+    const selectedBefore = new Set(typeof state !== 'undefined' ? state.selectedEngines : []);
     renderCategories();
-    state.selectedEngines = selectedBefore;
+    if (typeof state !== 'undefined') state.selectedEngines = selectedBefore;
     selectedBefore.forEach(id => {
       const card = document.querySelector(`[data-engine-id="${id}"]`);
       if (card) card.classList.add('selected');
     });
-    updateSelectedCount();
+    if (typeof updateSelectedCount === 'function') updateSelectedCount();
   }
 }
 
@@ -468,14 +468,14 @@ chrome.runtime.onMessage.addListener((message) => {
     updateUILanguage();
     if (typeof updateSelectedCount === 'function') updateSelectedCount();
     if (typeof renderCategories === 'function') {
-      const selectedBefore = new Set(state?.selectedEngines || []);
+      const selectedBefore = new Set(typeof state !== 'undefined' ? state.selectedEngines : []);
       renderCategories();
-      state.selectedEngines = selectedBefore;
+      if (typeof state !== 'undefined') state.selectedEngines = selectedBefore;
       selectedBefore.forEach(id => {
         const card = document.querySelector(`[data-engine-id="${id}"]`);
         if (card) card.classList.add('selected');
       });
-      updateSelectedCount();
+      if (typeof updateSelectedCount === 'function') updateSelectedCount();
     }
   }
 });
