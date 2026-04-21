@@ -286,15 +286,16 @@ function findDefaultEngineById(engineId) {
     'exa': { url: 'https://exa.ai/search?q=%s', name: 'Exa' },
 
     // AI Chat
-    'chatgpt': { url: 'https://chat.openai.com/?q=%s', name: 'ChatGPT' },
+    'chatgpt': { url: 'https://chatgpt.com/?q=%s', name: 'ChatGPT' },
     'claude': { url: 'https://claude.ai/new?q=%s', name: 'Claude' },
     'gemini': { url: 'https://gemini.google.com/app?q=%s', name: 'Gemini' },
-    'zhipu': { url: 'https://z.ai/?q=%s', name: 'ChatGLM' },
+    'zhipu': { url: 'https://chatglm.cn/?q=%s', name: 'ChatGLM' },
     'doubao': { url: 'https://www.doubao.com/chat/?q=%s', name: 'Doubao' },
     'wenxin': { url: 'https://yiyan.baidu.com/?q=%s', name: 'Wenxin' },
     'tongyi': { url: 'https://tongyi.aliyun.com/qianwen/?q=%s', name: 'Tongyi' },
     'kimi': { url: 'https://kimi.moonshot.cn/?q=%s', name: 'Kimi' },
-    'grok': { url: 'https://x.com/i/grok?q=%s', name: 'Grok' },
+    'grok': { url: 'https://grok.com/?q=%s', name: 'Grok' },
+    'felo': { url: 'https://felo.ai/search?q=%s', name: 'Felo' },
     'deepseek': { url: 'https://chat.deepseek.com/?q=%s', name: 'DeepSeek' },
     'hunyuan': { url: 'https://yuanbao.tencent.com/chat?q=%s', name: 'Yuanbao' },
 

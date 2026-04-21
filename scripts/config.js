@@ -162,7 +162,7 @@ const DEFAULT_ENGINES = {
         id: 'grok',
         name: 'Grok',
         description: 'X (Twitter) AI',
-        url: 'https://x.com/i/grok?q=%s',
+        url: 'https://grok.com/?q=%s',
         favicon: 'https://www.google.com/s2/favicons?domain=x.com&sz=32'
       },
       {
@@ -183,7 +183,7 @@ const DEFAULT_ENGINES = {
         id: 'manus',
         name: 'Manus',
         description: 'General AI Agent',
-        url: 'https://manus.im/invitation/HVPAMZ29QPAVXO',
+        url: 'https://manus.im/app?q=%s',
         favicon: 'https://www.google.com/s2/favicons?domain=manus.im&sz=32'
       }
     ]
