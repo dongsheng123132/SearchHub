@@ -220,7 +220,7 @@ function attachEventListeners() {
   // Collapse all button
   document.getElementById('collapseAllBtn').addEventListener('click', toggleAllGroups);
 
-  // Open SearchHub button
+  // Open 1SO SearchHub button
   document.getElementById('openSearchHub').addEventListener('click', () => {
     chrome.tabs.create({ url: 'index.html' });
   });
@@ -401,4 +401,4 @@ function startListening() {
   });
 }
 
-console.log('SearchHub sidebar loaded');
+console.log('1SO SearchHub sidebar loaded');

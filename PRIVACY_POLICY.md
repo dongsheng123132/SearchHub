@@ -1,10 +1,10 @@
-# Privacy Policy for SearchHub
+# Privacy Policy for 1SO SearchHub
 
 **Last updated: November 27, 2025**
 
 ## Overview
 
-SearchHub is a single-purpose multi-engine search tool. It does not collect, store, sell, or transmit personal data.
+1SO SearchHub is a single-purpose multi-engine search tool. It does not collect, store, sell, or transmit personal data.
 
 ## Data Processing
 

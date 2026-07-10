@@ -1,14 +1,14 @@
 {
   "extName": {
-    "message": "AI Search Hub",
+    "message": "1SO SearchHub",
     "description": "扩展名称"
   },
   "extDescription": {
-    "message": "一次输入，同时搜索多个 AI 与传统搜索引擎",
+    "message": "第一 AI 搜索，一次输入，同时搜索多个 AI 与搜索引擎",
     "description": "扩展描述"
   },
   "extSubtitle": {
-    "message": "一次搜索，全部结果",
+    "message": "一搜，全网 AI 结果",
     "description": "扩展副标题"
   },
 
@@ -88,6 +88,10 @@
     "message": "知识",
     "description": "知识分类"
   },
+  "categoryMaps": {
+    "message": "地图",
+    "description": "地图分类"
+  },
 
   "comboAIAll": {
     "message": "全部 AI",
@@ -107,7 +111,7 @@
   },
 
   "settingsTitle": {
-    "message": "SearchHub 设置",
+    "message": "1SO SearchHub 设置",
     "description": "设置页面标题"
   },
   "settingsAppearance": {
@@ -237,11 +241,11 @@
   },
 
   "contextMenuSearch": {
-    "message": "使用 SearchHub 搜索",
+    "message": "使用 1SO SearchHub 搜索",
     "description": "右键菜单搜索项"
   },
   "contextMenuSettings": {
-    "message": "SearchHub 设置",
+    "message": "1SO SearchHub 设置",
     "description": "右键菜单设置项"
   },
 
@@ -250,12 +254,12 @@
     "description": "未选择引擎提示"
   },
   "notificationOpenSearchHub": {
-    "message": "打开 SearchHub 选择引擎",
+    "message": "打开 1SO SearchHub 选择引擎",
     "description": "打开SearchHub提示"
   },
 
   "footerHint": {
-    "message": "Alt+S: 打开 SearchHub | 首次搜索后点击侧边栏图标查看垂直标签",
+    "message": "Alt+S: 打开 1SO SearchHub | 首次搜索后点击侧边栏图标查看垂直标签",
     "description": "页脚提示文本"
   },
 

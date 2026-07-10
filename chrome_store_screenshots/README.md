@@ -2,12 +2,12 @@
 
 ## 截图信息
 
-本目录包含符合Chrome商店要求的SearchHub扩展截图。
+本目录包含符合Chrome商店要求的 1SO SearchHub 扩展截图。
 
 ## 文件列表
 
 ### 主要截图 (1280x800px)
-- `screenshot_1_1280x800.png` - SearchHub主界面展示
+- `screenshot_1_1280x800.png` - 1SO SearchHub 主界面展示
 - `screenshot_1_1280x800.jpg` - JPEG格式版本
 - `screenshot_2_1280x800.png` - 快速组合搜索功能
 - `screenshot_2_1280x800.jpg` - JPEG格式版本

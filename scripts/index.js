@@ -252,7 +252,8 @@ function getCategoryTitle(categoryId, category) {
     video: 'categoryVideo',
     developer: 'categoryDeveloper',
     shopping: 'categoryShopping',
-    knowledge: 'categoryKnowledge'
+    knowledge: 'categoryKnowledge',
+    maps: 'categoryMaps'
   };
   const key = map[categoryId];
   return key ? t(key) : category.name;

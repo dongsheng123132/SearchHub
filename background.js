@@ -1,4 +1,4 @@
-// Background service worker for SearchHub
+// Background service worker for 1SO SearchHub
 
 const TAB_COLORS = ['blue', 'red', 'yellow', 'green', 'pink', 'purple', 'cyan', 'orange'];
 let colorIndex = 0;
@@ -6,7 +6,7 @@ let tabGroups = new Map(); // Track tab groups by search query
 
 // Initialize on install
 chrome.runtime.onInstalled.addListener(async () => {
-  console.log('SearchHub installed');
+  console.log('1SO SearchHub installed');
 
   // Set up side panel behavior
   try {
@@ -167,7 +167,7 @@ function setupContextMenus() {
   chrome.contextMenus.removeAll(() => {
     chrome.contextMenus.create({
       id: 'searchHub-search',
-      title: 'Search with SearchHub',
+      title: 'Search with 1SO SearchHub',
       contexts: ['selection']
     });
 
@@ -179,7 +179,7 @@ function setupContextMenus() {
 
     chrome.contextMenus.create({
       id: 'searchHub-settings',
-      title: 'SearchHub Settings',
+      title: '1SO SearchHub Settings',
       contexts: ['action']
     });
   });
@@ -202,7 +202,7 @@ async function handleContextMenuSearch(text, tab) {
 
     if (selectedEngines.length === 0) {
       // Show notification if no engines selected
-      await showNotification('Please select search engines first', 'Open SearchHub to select engines');
+      await showNotification('Please select search engines first', 'Open 1SO SearchHub to select engines');
       return;
     }
 
@@ -261,80 +261,75 @@ async function findEngineById(engineId) {
 
 // Find engine by ID from default engines only
 function findDefaultEngineById(engineId) {
+  // 与 scripts/config.js 保持同步（v1.3.0）
   const engineMap = {
-    // Traditional
-    'google': { url: 'https://www.google.com/search?q=%s', name: 'Google' },
-    'bing': { url: 'https://www.bing.com/search?q=%s', name: 'Bing' },
-    'baidu': { url: 'https://www.baidu.com/s?wd=%s', name: 'Baidu' },
-    'sogou': { url: 'https://www.sogou.com/web?query=%s', name: 'Sogou' },
-    'duckduckgo': { url: 'https://duckduckgo.com/?q=%s', name: 'DuckDuckGo' },
-    'yandex': { url: 'https://yandex.com/search/?text=%s', name: 'Yandex' },
-    'yahoo': { url: 'https://search.yahoo.com/search?p=%s', name: 'Yahoo' },
-
     // AI Search
     'perplexity': { url: 'https://www.perplexity.ai/search?q=%s', name: 'Perplexity' },
-    'phind': { url: 'https://www.phind.com/search?q=%s', name: 'Phind' },
-    'you': { url: 'https://you.com/search?q=%s', name: 'You.com' },
-    'thinkanai': { url: 'https://thinkany.ai/search?q=%s', name: 'ThinkAny' },
-    'metaso': { url: 'https://metaso.cn/?q=%s', name: 'Metaso' },
-    'pi': { url: 'https://pi.ai/talk?q=%s', name: 'Pi' },
-    'devv': { url: 'https://devv.ai/search?q=%s', name: 'Devv' },
-    'consensus': { url: 'https://consensus.app/search?q=%s', name: 'Consensus' },
-    'semantic': { url: 'https://www.semanticscholar.org/search?q=%s', name: 'Semantic Scholar' },
+    'metaso': { url: 'https://metaso.cn/?q=%s', name: '秘塔 Metaso' },
     'genspark': { url: 'https://www.genspark.ai/search?q=%s', name: 'Genspark' },
-    'monica': { url: 'https://monica.im/search?q=%s', name: 'Monica' },
+    'felo': { url: 'https://felo.ai/search?q=%s', name: 'Felo' },
+    'you': { url: 'https://you.com/search?q=%s', name: 'You.com' },
     'exa': { url: 'https://exa.ai/search?q=%s', name: 'Exa' },
+    'monica': { url: 'https://monica.im/search?q=%s', name: 'Monica' },
 
     // AI Chat
+    'doubao': { url: 'https://www.doubao.com/chat/?q=%s', name: '豆包 Doubao' },
+    'deepseek': { url: 'https://chat.deepseek.com/?q=%s', name: 'DeepSeek' },
+    'kimi': { url: 'https://kimi.moonshot.cn/?q=%s', name: 'Kimi' },
+    'hunyuan': { url: 'https://yuanbao.tencent.com/chat?q=%s', name: '腾讯元宝' },
+    'wenxin': { url: 'https://yiyan.baidu.com/?q=%s', name: '文心一言' },
+    'tongyi': { url: 'https://tongyi.aliyun.com/qianwen/?q=%s', name: '通义千问' },
+    'zhipu': { url: 'https://chatglm.cn/?q=%s', name: '智谱清言' },
+    'minimax': { url: 'https://hailuoai.com/?q=%s', name: '海螺 MiniMax' },
+    'mimo': { url: 'https://aistudio.xiaomimimo.com/?q=%s', name: '小米 MiMo' },
+    'xinghuo': { url: 'https://xinghuo.xfyun.cn/desk?q=%s', name: '讯飞星火' },
+    'tiangong': { url: 'https://www.tiangong.cn/?q=%s', name: '昆仑天工' },
+    'yuewen': { url: 'https://yuewen.cn/?q=%s', name: '阶跃跃问' },
     'chatgpt': { url: 'https://chatgpt.com/?q=%s', name: 'ChatGPT' },
     'claude': { url: 'https://claude.ai/new?q=%s', name: 'Claude' },
     'gemini': { url: 'https://gemini.google.com/app?q=%s', name: 'Gemini' },
-    'zhipu': { url: 'https://chatglm.cn/?q=%s', name: 'ChatGLM' },
-    'doubao': { url: 'https://www.doubao.com/chat/?q=%s', name: 'Doubao' },
-    'wenxin': { url: 'https://yiyan.baidu.com/?q=%s', name: 'Wenxin' },
-    'tongyi': { url: 'https://tongyi.aliyun.com/qianwen/?q=%s', name: 'Tongyi' },
-    'kimi': { url: 'https://kimi.moonshot.cn/?q=%s', name: 'Kimi' },
     'grok': { url: 'https://grok.com/?q=%s', name: 'Grok' },
-    'felo': { url: 'https://felo.ai/search?q=%s', name: 'Felo' },
-    'deepseek': { url: 'https://chat.deepseek.com/?q=%s', name: 'DeepSeek' },
-    'hunyuan': { url: 'https://yuanbao.tencent.com/chat?q=%s', name: 'Yuanbao' },
-    'manus': { url: 'https://manus.im/app?q=%s', name: 'Manus' },
+
+    // Traditional
+    'baidu': { url: 'https://www.baidu.com/s?wd=%s', name: '百度' },
+    'google': { url: 'https://www.google.com/search?q=%s', name: 'Google' },
+    'bing': { url: 'https://www.bing.com/search?q=%s', name: 'Bing' },
+    'sogou': { url: 'https://www.sogou.com/web?query=%s', name: '搜狗' },
+    'duckduckgo': { url: 'https://duckduckgo.com/?q=%s', name: 'DuckDuckGo' },
 
     // Social
-    'xiaohongshu': { url: 'https://www.xiaohongshu.com/search_result?keyword=%s', name: 'Xiaohongshu' },
-    'douyin': { url: 'https://www.douyin.com/search/%s', name: 'Douyin' },
-    'weibo': { url: 'https://s.weibo.com/weibo?q=%s', name: 'Weibo' },
+    'xiaohongshu': { url: 'https://www.xiaohongshu.com/search_result?keyword=%s', name: '小红书' },
+    'douyin': { url: 'https://www.douyin.com/search/%s', name: '抖音' },
+    'weibo': { url: 'https://s.weibo.com/weibo?q=%s', name: '微博' },
+    'zhihu': { url: 'https://www.zhihu.com/search?q=%s', name: '知乎' },
     'twitter': { url: 'https://twitter.com/search?q=%s', name: 'Twitter/X' },
     'reddit': { url: 'https://www.reddit.com/search/?q=%s', name: 'Reddit' },
     'facebook': { url: 'https://www.facebook.com/search/top/?q=%s', name: 'Facebook' },
-    'medium': { url: 'https://medium.com/search?q=%s', name: 'Medium' },
-    'substack': { url: 'https://substack.com/search?q=%s', name: 'Substack' },
-    'pinterest': { url: 'https://www.pinterest.com/search/pins/?q=%s', name: 'Pinterest' },
-    'quora': { url: 'https://www.quora.com/search?q=%s', name: 'Quora' },
-    'threads': { url: 'https://www.threads.net/search?q=%s', name: 'Threads' },
-    'producthunt': { url: 'https://www.producthunt.com/search?q=%s', name: 'Product Hunt' },
 
     // Video
+    'bilibili': { url: 'https://search.bilibili.com/all?keyword=%s', name: '哔哩哔哩' },
+    'xigua': { url: 'https://www.ixigua.com/search/%s', name: '西瓜视频' },
     'youtube': { url: 'https://www.youtube.com/results?search_query=%s', name: 'YouTube' },
-    'bilibili': { url: 'https://search.bilibili.com/all?keyword=%s', name: 'Bilibili' },
-    'xigua': { url: 'https://www.ixigua.com/search/%s', name: 'Xigua' },
+
+    // Knowledge
+    'baike': { url: 'https://baike.baidu.com/search?word=%s', name: '百度百科' },
+    'zhihu_k': { url: 'https://www.zhihu.com/search?q=%s', name: '知乎' },
+    'wikipedia': { url: 'https://zh.wikipedia.org/wiki/Special:Search?search=%s', name: '维基百科' },
+
+    // Maps
+    'amap': { url: 'https://www.amap.com/search?query=%s', name: '高德地图' },
+    'baidumap': { url: 'https://map.baidu.com/search?wd=%s', name: '百度地图' },
+    'qqmap': { url: 'https://map.qq.com/?what=%s', name: '腾讯地图' },
 
     // Developer
     'github': { url: 'https://github.com/search?q=%s', name: 'GitHub' },
     'stackoverflow': { url: 'https://stackoverflow.com/search?q=%s', name: 'Stack Overflow' },
-    'mdn': { url: 'https://developer.mozilla.org/en-US/search?q=%s', name: 'MDN' },
-    'npm': { url: 'https://www.npmjs.com/search?q=%s', name: 'NPM' },
 
     // Shopping
-    'amazon': { url: 'https://www.amazon.com/s?k=%s', name: 'Amazon' },
-    'taobao': { url: 'https://s.taobao.com/search?q=%s', name: 'Taobao' },
-    'jd': { url: 'https://search.jd.com/Search?keyword=%s', name: 'JD' },
-    'pinduoduo': { url: 'https://mobile.yangkeduo.com/search_result.html?search_key=%s', name: 'Pinduoduo' },
-
-    // Knowledge
-    'wikipedia': { url: 'https://en.wikipedia.org/wiki/Special:Search?search=%s', name: 'Wikipedia' },
-    'zhihu': { url: 'https://www.zhihu.com/search?q=%s', name: 'Zhihu' },
-    'baike': { url: 'https://baike.baidu.com/search?word=%s', name: 'Baidu Baike' }
+    'taobao': { url: 'https://s.taobao.com/search?q=%s', name: '淘宝' },
+    'jd': { url: 'https://search.jd.com/Search?keyword=%s', name: '京东' },
+    'pinduoduo': { url: 'https://mobile.yangkeduo.com/search_result.html?search_key=%s', name: '拼多多' },
+    'amazon': { url: 'https://www.amazon.com/s?k=%s', name: 'Amazon' }
   };
 
   return engineMap[engineId];
@@ -413,4 +408,4 @@ chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
   }
 });
 
-console.log('SearchHub background service worker loaded');
+console.log('1SO SearchHub background service worker loaded');

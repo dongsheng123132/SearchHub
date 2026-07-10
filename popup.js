@@ -1,4 +1,4 @@
-// Simplified popup version for SearchHub
+// Simplified popup version for 1SO SearchHub
 // This version runs in the popup context, which preserves user gesture for sidePanel.open()
 
 let selectedEngines = new Set();

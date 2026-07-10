@@ -2,7 +2,7 @@
 
 const i18n = {
   en: {
-    title: 'SearchHub',
+    title: '1SO SearchHub',
     themeToggle: 'Toggle theme',
     compactMode: 'Compact mode',
     editMode: 'Edit mode',
@@ -64,10 +64,11 @@ const i18n = {
     categoryDeveloper: '👨‍💻 Developer',
     categoryShopping: '🛒 Shopping',
     categoryKnowledge: '📚 Knowledge',
+    categoryMaps: '🗺️ Maps',
     verticalTabs: 'Vertical Tabs',
     collapseAll: 'Collapse All Groups',
     refresh: 'Refresh',
-    openSearchHubBtn: 'Open SearchHub',
+    openSearchHubBtn: 'Open 1SO SearchHub',
     latestPrefix: 'Latest:',
     noTabs: 'No tabs yet',
     openSomeTabs: 'Open some tabs to see them here',
@@ -79,7 +80,7 @@ const i18n = {
   },
 
   zh: {
-    title: 'SearchHub',
+    title: '1SO SearchHub',
     themeToggle: '切换主题',
     compactMode: '紧凑模式',
     editMode: '编辑模式',
@@ -141,10 +142,11 @@ const i18n = {
     categoryDeveloper: '👨‍💻 开发者',
     categoryShopping: '🛒 购物',
     categoryKnowledge: '📚 知识库',
+    categoryMaps: '🗺️ 地图',
     verticalTabs: '垂直标签页',
     collapseAll: '全部折叠',
     refresh: '刷新',
-    openSearchHubBtn: '打开 SearchHub',
+    openSearchHubBtn: '打开 1SO SearchHub',
     latestPrefix: '最近：',
     noTabs: '当前窗口没有标签页',
     openSomeTabs: '打开一些标签页后将在此显示',
@@ -156,7 +158,7 @@ const i18n = {
   },
 
   es: {
-    title: 'SearchHub',
+    title: '1SO SearchHub',
     themeToggle: 'Cambiar tema',
     compactMode: 'Modo compacto',
     editMode: 'Modo edición',
@@ -218,10 +220,11 @@ const i18n = {
     categoryDeveloper: '👨‍💻 Desarrollador',
     categoryShopping: '🛒 Compras',
     categoryKnowledge: '📚 Conocimiento',
+    categoryMaps: '🗺️ Mapas',
     verticalTabs: 'Pestañas verticales',
     collapseAll: 'Contraer todos los grupos',
     refresh: 'Actualizar',
-    openSearchHubBtn: 'Abrir SearchHub',
+    openSearchHubBtn: 'Abrir 1SO SearchHub',
     latestPrefix: 'Último:',
     noTabs: 'No hay pestañas',
     openSomeTabs: 'Abre pestañas para verlas aquí',
@@ -233,7 +236,7 @@ const i18n = {
   },
 
   fr: {
-    title: 'SearchHub',
+    title: '1SO SearchHub',
     themeToggle: 'Changer le thème',
     compactMode: 'Mode compact',
     editMode: 'Mode édition',
@@ -295,10 +298,11 @@ const i18n = {
     categoryDeveloper: '👨‍💻 Développeur',
     categoryShopping: '🛒 Shopping',
     categoryKnowledge: '📚 Connaissance',
+    categoryMaps: '🗺️ Cartes',
     verticalTabs: 'Onglets verticaux',
     collapseAll: 'Réduire tous les groupes',
     refresh: 'Actualiser',
-    openSearchHubBtn: 'Ouvrir SearchHub',
+    openSearchHubBtn: 'Ouvrir 1SO SearchHub',
     latestPrefix: 'Dernier :',
     noTabs: 'Aucun onglet',
     openSomeTabs: 'Ouvrez des onglets pour les voir ici',
