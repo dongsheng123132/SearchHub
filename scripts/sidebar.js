@@ -4,6 +4,8 @@ let currentWindowId = null;
 let activeTabId = null;
 let allTabs = [];
 let allGroups = [];
+let latestQuery = '';
+let copyFeedbackTimer = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -40,7 +42,9 @@ async function loadLastSearchQuery() {
       const searchInfo = document.getElementById('searchInfo');
       const searchQuery = document.getElementById('searchQuery');
       const prefix = typeof t === 'function' ? t('latestPrefix') : 'Latest:';
-      searchQuery.textContent = `${prefix} "${result.lastQuery}"`;
+      latestQuery = result.lastQuery;
+      searchQuery.textContent = `${prefix} "${latestQuery}"`;
+      searchQuery.title = latestQuery;
       searchInfo.style.display = 'block';
     }
   } catch (error) {
@@ -217,6 +221,9 @@ function attachEventListeners() {
   // Refresh button
   document.getElementById('refreshBtn').addEventListener('click', loadAllTabs);
 
+  // Copy the complete query even when its preview is truncated
+  document.getElementById('copyQueryBtn').addEventListener('click', copyLatestQuery);
+
   // Collapse all button
   document.getElementById('collapseAllBtn').addEventListener('click', toggleAllGroups);
 
@@ -287,6 +294,52 @@ function attachEventListeners() {
       }
     }
   });
+}
+
+async function copyLatestQuery() {
+  if (!latestQuery) return;
+
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(latestQuery);
+    } else {
+      fallbackCopyText(latestQuery);
+    }
+    showCopyFeedback();
+  } catch (error) {
+    console.error('Failed to copy search query:', error);
+  }
+}
+
+function fallbackCopyText(text) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand('copy');
+  textarea.remove();
+
+  if (!copied) {
+    throw new Error('Copy command was rejected');
+  }
+}
+
+function showCopyFeedback() {
+  const button = document.getElementById('copyQueryBtn');
+  const copiedLabel = typeof t === 'function' ? t('copied') : 'Copied!';
+  button.classList.add('copied');
+  button.title = copiedLabel;
+  button.setAttribute('aria-label', copiedLabel);
+
+  clearTimeout(copyFeedbackTimer);
+  copyFeedbackTimer = setTimeout(() => {
+    const copyLabel = typeof t === 'function' ? t('copyQuery') : 'Copy search text';
+    button.classList.remove('copied');
+    button.title = copyLabel;
+    button.setAttribute('aria-label', copyLabel);
+  }, 1500);
 }
 
 // Toggle all groups
