@@ -43,7 +43,7 @@ function renderQuickCombos() {
   DEFAULT_COMBOS.forEach(combo => {
     const btn = document.createElement('button');
     btn.className = 'combo-button';
-    btn.textContent = `${combo.icon} ${combo.name}`;
+    btn.textContent = combo.name; // emoji 已含在 name 里，无独立 icon 字段
     btn.onclick = () => {
       selectedEngines = new Set(combo.engines);
       updateAllUI();
@@ -185,7 +185,7 @@ async function handleSearch() {
 
   // Get settings
   const settingsResult = await chrome.storage.sync.get(['settings']);
-  const settings = settingsResult.settings || DEFAULT_SETTINGS;
+  const settings = { ...DEFAULT_SETTINGS, ...(settingsResult.settings || {}) };
 
   // Build URLs
   const urls = [];

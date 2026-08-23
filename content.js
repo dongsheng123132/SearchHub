@@ -20,13 +20,14 @@ let followUpBar = null;
   
   if (query && shouldShowFollowUpBar()) {
     // Wait a bit for the page to load fully
+    // 注意：URLSearchParams.get() 已解码一次，这里不能再 decodeURIComponent
     setTimeout(() => {
-      tryFillQuestion(decodeURIComponent(query));
+      tryFillQuestion(query);
     }, 1500);
     
     // Retry a few times in case of slow loading
     setTimeout(() => {
-      tryFillQuestion(decodeURIComponent(query));
+      tryFillQuestion(query);
     }, 3000);
   }
 })();
@@ -45,10 +46,13 @@ async function loadSettings() {
 
 // Check if this tab was opened by SearchHub
 function checkIfSearchHubTab() {
-  // Check if the tab was created by SearchHub
-  // You can use sessionStorage or URL parameters to identify
+  // SearchHub 打开的标签 URL 会带 q/query/prompt 参数（见 index.js 构建 URL 逻辑）
   const urlParams = new URLSearchParams(window.location.search);
-  isSearchHubTab = urlParams.has('searchhub') || sessionStorage.getItem('searchhub');
+  isSearchHubTab = urlParams.has('q') || urlParams.has('query') || urlParams.has('prompt')
+    || urlParams.has('searchhub') || sessionStorage.getItem('searchhub');
+  if (isSearchHubTab) {
+    try { sessionStorage.setItem('searchhub', '1'); } catch (_) {}
+  }
 }
 
 // Check if we should show the follow-up bar

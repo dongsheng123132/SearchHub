@@ -29,6 +29,17 @@ chrome.action.onClicked.addListener(() => {
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'search') {
     handleSearch(message);
+    return true;
+  } else if (message.action === 'followUp') {
+    // 中继追问到所有 AI 页面标签（content.js 在另一端接收）
+    chrome.tabs.query({}, (tabs) => {
+      tabs.forEach(tab => {
+        if (tab.id !== sender.tab?.id) {
+          chrome.tabs.sendMessage(tab.id, { action: 'followUp', question: message.question }).catch(() => {});
+        }
+      });
+    });
+    return true;
   } else if (message.action === 'getSettings') {
     chrome.storage.sync.get(['settings'], (result) => {
       sendResponse({ settings: result.settings });

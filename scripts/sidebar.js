@@ -190,18 +190,29 @@ function createTabElement(tab, inGroup) {
   const displayTitle = title.length > 50 ? title.substring(0, 50) + '...' : title;
 
   tabEl.innerHTML = `
-    <img class="tab-favicon" src="${faviconUrl}" alt="" onerror="this.src='icons/icon16.png'">
+    <img class="tab-favicon" src="" alt="">
     <div class="tab-info">
-      <div class="tab-title" title="${title}">${displayTitle}</div>
-      ${tab.url ? `<div class="tab-url">${getDomain(tab.url)}</div>` : ''}
+      <div class="tab-title"></div>
+      ${tab.url ? `<div class="tab-url"></div>` : ''}
     </div>
-    <button class="tab-close" data-tab-id="${tab.id}" title="${typeof t === 'function' ? t('closeTab') : 'Close tab'}">
+    <button class="tab-close" title="${typeof t === 'function' ? t('closeTab') : 'Close tab'}">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
   `;
+  // 网页提供的 title/url 可能含引号或 HTML，用 textContent 安全赋值，避免注入
+  const img = tabEl.querySelector('.tab-favicon');
+  img.src = faviconUrl;
+  img.onerror = () => { img.src = 'icons/icon16.png'; };
+  const titleEl = tabEl.querySelector('.tab-title');
+  titleEl.textContent = displayTitle;
+  titleEl.title = title;
+  if (tab.url) {
+    tabEl.querySelector('.tab-url').textContent = getDomain(tab.url);
+  }
+  tabEl.querySelector('.tab-close').dataset.tabId = tab.id;
 
   return tabEl;
 }

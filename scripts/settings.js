@@ -309,7 +309,7 @@ function openEngineModal() {
   document.getElementById('engineName').value = '';
   document.getElementById('engineUrl').value = '';
   document.getElementById('engineDesc').value = '';
-  document.getElementById('engineCategory').value = 'custom';
+  document.getElementById('engineCategory').value = 'aiSearch';
   document.getElementById('engineModal').style.display = 'flex';
 }
 
@@ -333,13 +333,21 @@ function saveEngine() {
     return;
   }
 
+  let faviconDomain;
+  try {
+    faviconDomain = new URL(url).hostname;
+  } catch (e) {
+    alert('Invalid URL: ' + e.message);
+    return;
+  }
+
   const engine = {
     id: `custom-${Date.now()}`,
     name,
     description: description || 'Custom search engine',
     url,
     category,
-    favicon: `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}`
+    favicon: `https://www.google.com/s2/favicons?domain=${faviconDomain}`
   };
 
   if (!settings.customEngines) {
