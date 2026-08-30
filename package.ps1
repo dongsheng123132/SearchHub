@@ -1,4 +1,4 @@
-# 1SO SearchHub 打包脚本 for Chrome Web Store
+﻿# 1SO SearchHub 打包脚本 for Chrome Web Store
 # 使用方法：在 PowerShell 中运行 .\package.ps1
 
 $version = (Get-Content .\manifest.json -Raw | ConvertFrom-Json).version
