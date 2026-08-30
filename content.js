@@ -59,24 +59,29 @@ function checkIfSearchHubTab() {
 function shouldShowFollowUpBar() {
   // Only show on AI chat sites
   const aiDomains = [
-    'chat.openai.com',
     'chatgpt.com',
     'claude.ai',
     'gemini.google.com',
     'chatglm.cn',
-    'doubao.com',
-    'yiyan.baidu.com',
-    'tongyi.aliyun.com',
-    'kimi.moonshot.cn',
-    'perplexity.ai',
-    'phind.com',
+    'www.doubao.com',
+    'wenxin.baidu.com',
+    'www.qianwen.com',
+    'www.kimi.com',
+    'www.perplexity.ai',
     'you.com',
-    'thinkany.ai',
+    'exa.ai',
     'metaso.cn',
     'chat.deepseek.com',
-    'pi.ai',
-    'manus.im',
-    'felo.ai'
+    'yuanbao.tencent.com',
+    'grok.com',
+    'hailuoai.com',
+    'aistudio.xiaomimimo.com',
+    'xinghuo.xfyun.cn',
+    'www.tiangong.cn',
+    'chat.stepfun.com',
+    'www.genspark.ai',
+    'felo.ai',
+    's.monica.im'
   ];
 
   return aiDomains.some(domain => window.location.hostname.includes(domain));
@@ -121,10 +126,10 @@ function createFollowUpBar() {
   const sendBtn = document.getElementById('searchhub-followup-send');
   const closeBtn = document.getElementById('searchhub-followup-close');
 
-  input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      sendFollowUp();
-    }
+  input.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return;
+    e.preventDefault();
+    sendFollowUp();
   });
 
   sendBtn.addEventListener('click', sendFollowUp);
@@ -160,6 +165,31 @@ async function sendFollowUp() {
 
 // Try to fill the question in common AI chat interfaces
 function tryFillQuestion(question) {
+  // 站点专属选择器优先（更准，避免填错框），通用列表兜底
+  const siteSelectors = {
+    'yuanbao.tencent.com': [
+      '[contenteditable="true"][role="textbox"]',
+      'div[contenteditable="true"]'
+    ],
+    'wenxin.baidu.com': [
+      '[contenteditable="true"][role="textbox"]',
+      'div[contenteditable="true"]'
+    ],
+    'www.kimi.com': [
+      'textarea[placeholder]',
+      'div[contenteditable="true"]'
+    ],
+    'chat.deepseek.com': [
+      'textarea',
+      'div[contenteditable="true"]'
+    ]
+  };
+  const siteHits = siteSelectors[window.location.hostname] || [];
+  for (const selector of siteHits) {
+    const element = document.querySelector(selector);
+    if (element && fillElement(element, question)) return true;
+  }
+
   // Common selectors for AI chat input boxes
   const selectors = [
     '#prompt-textarea', // ChatGPT
@@ -177,21 +207,24 @@ function tryFillQuestion(question) {
 
   for (const selector of selectors) {
     const element = document.querySelector(selector);
-    if (element) {
-      if (element.tagName === 'DIV') {
-        element.textContent = question;
-      } else {
-        element.value = question;
-      }
-
-      // Trigger input event
-      element.dispatchEvent(new Event('input', { bubbles: true }));
-      element.focus();
-      return true;
-    }
+    if (element && fillElement(element, question)) return true;
   }
 
   return false;
+}
+
+// 填充单个元素并派发输入事件；返回是否成功
+function fillElement(element, question) {
+  if (element.tagName === 'DIV' || element.isContentEditable) {
+    element.textContent = question;
+    // React/框架监听的原生 InputEvent（含 data），兼容性比 Event 好
+    element.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: question }));
+  } else {
+    element.value = question;
+    element.dispatchEvent(new Event('input', { bubbles: true }));
+  }
+  element.focus();
+  return true;
 }
 
 // Listen for messages from background

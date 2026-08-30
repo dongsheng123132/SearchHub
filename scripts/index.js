@@ -1346,10 +1346,10 @@ function attachEventListeners() {
     clearBtn.style.display = e.target.value ? 'block' : 'none';
   });
 
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      performSearch();
-    }
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return;
+    e.preventDefault();
+    performSearch();
   });
 
   // Clear button

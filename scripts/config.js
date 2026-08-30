@@ -11,9 +11,9 @@ const DEFAULT_ENGINES = {
       { id: 'metaso', name: '秘塔 Metaso', description: '无广告 AI 搜索', url: 'https://metaso.cn/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=metaso.cn&sz=32' },
       { id: 'genspark', name: 'Genspark', description: 'AI search engine', url: 'https://www.genspark.ai/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=genspark.ai&sz=32' },
       { id: 'felo', name: 'Felo', description: 'Cross-lingual AI search', url: 'https://felo.ai/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=felo.ai&sz=32' },
-      { id: 'you', name: 'You.com', description: 'AI search engine', url: 'https://you.com/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=you.com&sz=32' },
-      { id: 'exa', name: 'Exa', description: 'AI-powered search', url: 'https://exa.ai/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=exa.ai&sz=32' },
-      { id: 'monica', name: 'Monica', description: 'AI assistant search', url: 'https://monica.im/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=monica.im&sz=32' }
+      { id: 'you', name: 'You.com 🔒', description: 'AI search engine (requires login)', url: 'https://you.com/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=you.com&sz=32' },
+      { id: 'exa', name: 'Exa 🔒', description: 'AI-powered search (requires login)', url: 'https://exa.ai/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=exa.ai&sz=32' },
+      { id: 'monica', name: 'Monica', description: 'AI assistant search', url: 'https://s.monica.im/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=monica.so&sz=32' }
     ]
   },
 
@@ -23,16 +23,16 @@ const DEFAULT_ENGINES = {
     engines: [
       { id: 'doubao', name: '豆包 Doubao', description: 'ByteDance AI', url: 'https://www.doubao.com/chat/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=doubao.com&sz=32' },
       { id: 'deepseek', name: 'DeepSeek', description: 'DeepSeek AI chat', url: 'https://chat.deepseek.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=deepseek.com&sz=32' },
-      { id: 'kimi', name: 'Kimi', description: 'Moonshot AI', url: 'https://kimi.moonshot.cn/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=moonshot.cn&sz=32' },
-      { id: 'hunyuan', name: '腾讯元宝', description: 'Tencent AI assistant', url: 'https://yuanbao.tencent.com/chat?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=yuanbao.tencent.com&sz=32' },
-      { id: 'wenxin', name: '文心一言', description: 'Baidu AI chat', url: 'https://yiyan.baidu.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=baidu.com&sz=32' },
-      { id: 'tongyi', name: '通义千问', description: 'Alibaba Cloud AI', url: 'https://tongyi.aliyun.com/qianwen/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=aliyun.com&sz=32' },
+      { id: 'kimi', name: 'Kimi', description: 'Moonshot AI', url: 'https://www.kimi.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=kimi.com&sz=32' },
+      { id: 'hunyuan', name: '腾讯元宝', description: 'Tencent AI assistant', url: 'https://yuanbao.tencent.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=yuanbao.tencent.com&sz=32' },
+      { id: 'wenxin', name: '文心一言', description: 'Baidu AI chat', url: 'https://wenxin.baidu.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=wenxin.baidu.com&sz=32' },
+      { id: 'tongyi', name: '通义千问', description: 'Alibaba Cloud AI', url: 'https://www.qianwen.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=qianwen.com&sz=32' },
       { id: 'zhipu', name: '智谱清言', description: 'Zhipu AI chat', url: 'https://chatglm.cn/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=chatglm.cn&sz=32' },
       { id: 'minimax', name: '海螺 MiniMax', description: 'MiniMax AI 对话', url: 'https://hailuoai.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=hailuoai.com&sz=32' },
       { id: 'mimo', name: '小米 MiMo', description: 'Xiaomi MiMo Studio', url: 'https://aistudio.xiaomimimo.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=xiaomimimo.com&sz=32' },
       { id: 'xinghuo', name: '讯飞星火', description: 'iFlytek Spark', url: 'https://xinghuo.xfyun.cn/desk?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=xfyun.cn&sz=32' },
       { id: 'tiangong', name: '昆仑天工', description: 'Tiangong AI', url: 'https://www.tiangong.cn/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=tiangong.cn&sz=32' },
-      { id: 'yuewen', name: '阶跃跃问', description: 'StepFun Yuewen', url: 'https://yuewen.cn/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=yuewen.cn&sz=32' },
+      { id: 'yuewen', name: '阶跃跃问', description: 'StepFun Yuewen', url: 'https://chat.stepfun.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=stepfun.com&sz=32' },
       { id: 'chatgpt', name: 'ChatGPT', description: 'OpenAI conversational AI', url: 'https://chatgpt.com/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=chatgpt.com&sz=32' },
       { id: 'claude', name: 'Claude', description: 'Anthropic AI assistant', url: 'https://claude.ai/new?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=claude.ai&sz=32' },
       { id: 'gemini', name: 'Gemini', description: 'Google AI', url: 'https://gemini.google.com/app?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=gemini.google.com&sz=32' },
@@ -58,7 +58,7 @@ const DEFAULT_ENGINES = {
     engines: [
       { id: 'xiaohongshu', name: '小红书', description: 'Lifestyle sharing', url: 'https://www.xiaohongshu.com/search_result?keyword=%s', favicon: 'https://www.google.com/s2/favicons?domain=xiaohongshu.com&sz=32' },
       { id: 'douyin', name: '抖音', description: 'Short video platform', url: 'https://www.douyin.com/search/%s', favicon: 'https://www.google.com/s2/favicons?domain=douyin.com&sz=32' },
-      { id: 'weibo', name: '微博', description: 'Social media', url: 'https://s.weibo.com/weibo?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=weibo.com&sz=32' },
+      { id: 'weibo', name: '微博 🔒', description: 'Social media (visitor gateway)', url: 'https://s.weibo.com/weibo?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=weibo.com&sz=32' },
       { id: 'zhihu', name: '知乎', description: 'Chinese Q&A community', url: 'https://www.zhihu.com/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=zhihu.com&sz=32' },
       { id: 'twitter', name: 'Twitter/X', description: 'Social network', url: 'https://twitter.com/search?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=twitter.com&sz=32' },
       { id: 'reddit', name: 'Reddit', description: 'Community discussions', url: 'https://www.reddit.com/search/?q=%s', favicon: 'https://www.google.com/s2/favicons?domain=reddit.com&sz=32' },

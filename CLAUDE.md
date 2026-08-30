@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 SearchHub is a Chrome extension (Manifest V3) that lets users search across multiple engines simultaneously. It opens results as grouped tabs or windows, with a sidebar for tab management.
 
 - Chrome Web Store ID: `lojjckopababijcnckabcilfkbgajnbo`
-- Current version: `1.2.6`
+- Current version: `1.3.3`
 - GitHub: `dongsheng123132/SearchHub` (private)
 
 ## Packaging

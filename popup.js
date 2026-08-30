@@ -11,16 +11,43 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   
   renderQuickCombos();
+  await renderCustomCombos();
   renderCategories();
   attachEventListeners();
   await restoreSelectedEngines();
 });
 
+// 渲染用户自定义组合（与 index 页一致）
+async function renderCustomCombos() {
+  try {
+    const result = await chrome.storage.sync.get(['settings']);
+    const customCombos = result.settings?.customCombos || [];
+    if (!customCombos.length) return;
+    const container = document.getElementById('quickCombos');
+    customCombos.forEach(combo => {
+      const btn = document.createElement('button');
+      btn.className = 'combo-button combo-button-custom';
+      btn.textContent = combo.name;
+      btn.title = combo.name;
+      btn.onclick = () => {
+        selectedEngines = new Set(combo.engines);
+        updateAllUI();
+        saveSelectedEngines();
+      };
+      container.appendChild(btn);
+    });
+  } catch (error) {
+    console.error('Failed to render custom combos:', error);
+  }
+}
+
 // Attach event listeners
 function attachEventListeners() {
   document.getElementById('searchButton').addEventListener('click', handleSearch);
-  document.getElementById('searchInput').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSearch();
+  document.getElementById('searchInput').addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' || e.isComposing || e.keyCode === 229) return;
+    e.preventDefault();
+    handleSearch();
   });
 
   document.getElementById('selectAll').addEventListener('click', selectAllEngines);
@@ -187,10 +214,11 @@ async function handleSearch() {
   const settingsResult = await chrome.storage.sync.get(['settings']);
   const settings = { ...DEFAULT_SETTINGS, ...(settingsResult.settings || {}) };
 
-  // Build URLs
+  // Build URLs（含自定义引擎）
   const urls = [];
+  const customEngines = settings.customEngines || [];
   selectedEngines.forEach(engineId => {
-    const engine = findEngineById(engineId);
+    const engine = findEngineById(engineId, customEngines);
     if (engine) {
       urls.push({
         url: engine.url.replace('%s', encodeURIComponent(query)),
@@ -229,11 +257,15 @@ async function handleSearch() {
   window.close();
 }
 
-// Find engine by ID
-function findEngineById(engineId) {
+// Find engine by ID（默认引擎 + 自定义引擎）
+function findEngineById(engineId, customEngines) {
   for (const category of Object.values(DEFAULT_ENGINES)) {
     const engine = category.engines.find(e => e.id === engineId);
     if (engine) return engine;
+  }
+  if (Array.isArray(customEngines)) {
+    const custom = customEngines.find(e => e.id === engineId);
+    if (custom) return custom;
   }
   return null;
 }

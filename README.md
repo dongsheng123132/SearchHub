@@ -15,7 +15,7 @@
 
 ### 这是什么
 
-1SO SearchHub（一搜 AI 搜索）是一个 Chrome 浏览器扩展，让你**一次输入，同时在多个 AI 与搜索引擎打开结果**。v1.3.1 优化了侧栏长搜索文字的显示，并新增一键复制完整搜索文字；同时支持 50+ 常用引擎，涵盖 AI 搜索、AI 聊天、传统搜索、社交媒体、视频、地图、购物、知识库等分类。
+1SO SearchHub（一搜 AI 搜索）是一个 Chrome 浏览器扩展，让你**一次输入，同时在多个 AI 与搜索引擎打开结果**。v1.3.3 修复了腾讯元宝、文心一言、Kimi、通义千问、Monica、阶跃跃问六个引擎的入口，修复中文输入法回车误触，并更新 AI 站点兼容清单；支持 54 个常用引擎，涵盖 AI 搜索、AI 聊天、传统搜索、社交媒体、视频、地图、购物、知识库等分类。
 
 ### 安装
 
@@ -76,7 +76,7 @@ git clone https://github.com/dongsheng123132/SearchHub.git
 
 ### What is this
 
-1SO SearchHub is a Chrome extension that lets you **search once and open results across multiple AI and search engines simultaneously**. v1.3.1 keeps long sidebar queries compact and adds one-click copying of the complete search text, with 50+ preset engines across AI search, AI chat, traditional search, social media, video, maps, shopping, and knowledge bases.
+1SO SearchHub is a Chrome extension that lets you **search once and open results across multiple AI and search engines simultaneously**. v1.3.3 fixes entry points for Yuanbao, Wenxin, Kimi, Qianwen, Monica and Yuewen, fixes the IME Enter issue, and refreshes the AI site compatibility list, with 54 preset engines across AI search, AI chat, traditional search, social media, video, maps, shopping, and knowledge bases.
 
 ### Install
 
