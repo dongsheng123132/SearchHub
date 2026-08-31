@@ -22,3 +22,6 @@ Desktop.ini
 _store_assets/node_modules/
 _store_assets/chrome-profile/
 _store_assets/raw/
+
+# Store asset pipeline (workspace)
+_store_assets/
