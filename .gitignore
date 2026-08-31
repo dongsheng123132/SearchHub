@@ -17,3 +17,8 @@ Desktop.ini
 *.bak
 *.old
 *.tmp
+
+# Store asset pipeline
+_store_assets/node_modules/
+_store_assets/chrome-profile/
+_store_assets/raw/
