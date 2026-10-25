@@ -1,5 +1,17 @@
 // Sidebar script for vertical tab management
 
+// 能力探测：内核没有 tabGroups 时（360 / QQ 等），页面必须照常渲染，
+// 否则 tabGroups.query() 一抛错整页就白了 —— 用户以为扩展坏了。
+const CAPS = {
+  tabGroups: typeof chrome.tabGroups !== 'undefined' &&
+    typeof chrome.tabGroups.query === 'function' &&
+    typeof chrome.tabs?.group === 'function',
+};
+const TAB_GROUP_NONE =
+  (typeof chrome.tabGroups !== 'undefined' && chrome.tabGroups.TAB_GROUP_ID_NONE != null)
+    ? chrome.tabGroups.TAB_GROUP_ID_NONE
+    : -1;
+
 let currentWindowId = null;
 let activeTabId = null;
 let allTabs = [];
@@ -17,9 +29,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 async function initialize() {
-  // Get current window
-  const window = await chrome.windows.getCurrent();
-  currentWindowId = window.id;
+  // 降级模式：由后台用 ?win=<窗口id> 打开独立侧栏小窗，
+  // 此时不能拿「弹窗自己」当目标窗口，必须用传进来的那个。
+  const winParam = new URLSearchParams(location.search).get('win');
+
+  if (winParam && /^\d+$/.test(winParam)) {
+    currentWindowId = Number(winParam);
+    document.body.classList.add('as-window');
+  } else {
+    const currentWindow = await chrome.windows.getCurrent();
+    currentWindowId = currentWindow.id;
+  }
 
   // Get active tab
   const tabs = await chrome.tabs.query({ active: true, windowId: currentWindowId });
@@ -57,15 +77,24 @@ async function loadAllTabs() {
   try {
     // Get all tabs in current window
     allTabs = await chrome.tabs.query({ windowId: currentWindowId });
-
-    // Get all groups in current window
-    allGroups = await chrome.tabGroups.query({ windowId: currentWindowId });
-
-    // Render tabs
-    renderTabs();
   } catch (error) {
     console.error('Failed to load tabs:', error);
+    return;
   }
+
+  // 分组信息：能力缺失时退化成「全部平铺」，不让它把渲染带走
+  if (CAPS.tabGroups) {
+    try {
+      allGroups = await chrome.tabGroups.query({ windowId: currentWindowId });
+    } catch (error) {
+      console.error('Failed to query tab groups (fallback to flat list):', error);
+      allGroups = [];
+    }
+  } else {
+    allGroups = [];
+  }
+
+  renderTabs();
 }
 
 // Render all tabs (grouped and ungrouped)
@@ -96,7 +125,7 @@ function renderTabs() {
   const ungroupedTabs = [];
 
   allTabs.forEach(tab => {
-    if (tab.groupId !== chrome.tabGroups.TAB_GROUP_ID_NONE) {
+    if (tab.groupId !== TAB_GROUP_NONE) {
       if (!groupedTabs.has(tab.groupId)) {
         groupedTabs.set(tab.groupId, []);
       }
@@ -443,26 +472,29 @@ function startListening() {
     }
   });
 
-  // Group created
-  chrome.tabGroups.onCreated.addListener((group) => {
-    if (group.windowId === currentWindowId) {
-      loadAllTabs();
-    }
-  });
+  // 分组相关的监听：内核没有 tabGroups 就不注册（注册即抛错，会连累后面的逻辑）
+  if (CAPS.tabGroups) {
+    // Group created
+    chrome.tabGroups.onCreated.addListener((group) => {
+      if (group.windowId === currentWindowId) {
+        loadAllTabs();
+      }
+    });
 
-  // Group updated
-  chrome.tabGroups.onUpdated.addListener((group) => {
-    if (group.windowId === currentWindowId) {
-      loadAllTabs();
-    }
-  });
+    // Group updated
+    chrome.tabGroups.onUpdated.addListener((group) => {
+      if (group.windowId === currentWindowId) {
+        loadAllTabs();
+      }
+    });
 
-  // Group removed
-  chrome.tabGroups.onRemoved.addListener((group) => {
-    if (group.windowId === currentWindowId) {
-      loadAllTabs();
-    }
-  });
+    // Group removed
+    chrome.tabGroups.onRemoved.addListener((group) => {
+      if (group.windowId === currentWindowId) {
+        loadAllTabs();
+      }
+    });
+  }
 }
 
 console.log('1SO SearchHub sidebar loaded');

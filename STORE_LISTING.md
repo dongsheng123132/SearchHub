@@ -1,5 +1,17 @@
 # 1SO SearchHub — Chrome Web Store 上架文案（v1.3.3）
 
+## v1.3.5 更新日志（What's new，商店后台粘贴）
+
+**中文**
+> 修复在 360、QQ 等国产浏览器上的兼容问题：这些浏览器内核虽新但不实现标签分组/侧边栏接口，此前会导致「点了搜索没反应」。现在缺接口时自动降级——侧边栏改为独立小窗显示，分组能力缺失不影响正常打开结果。同时修复降级模式下侧边栏可能重复打开的问题。官网地址更新为 1so.u-claw.org.cn。
+
+**English**
+> Fixed compatibility with Chinese Chromium-shell browsers (360, QQ) that ship a recent engine but don't implement the tab-groups / side-panel APIs — previously a search could silently do nothing. Missing APIs now degrade gracefully: the side panel opens as a standalone window, and missing grouping no longer blocks results from opening. Also fixed a case where the fallback panel could open twice. Homepage updated to 1so.u-claw.org.cn.
+
+**一句话版**：国产浏览器（360/QQ）不再「点了没反应」——缺侧边栏接口时自动降级成独立小窗。
+
+---
+
 > 引擎数以 `_store_assets/count-engines.js` 实测为准：**50 个**（9 分类，无重复，全部含有效搜索 URL）。
 > 字数校验：标题 28/45 ✓ · 简短描述 63/132 ✓（英 42/45、124/132 ✓）
 > 文案来源：pi 初稿 → 主会话按代码事实校验修正（5 组合、50 引擎均已核实）。

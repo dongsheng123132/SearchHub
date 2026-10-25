@@ -4,6 +4,17 @@ const TAB_COLORS = ['blue', 'red', 'yellow', 'green', 'pink', 'purple', 'cyan', 
 let colorIndex = 0;
 let tabGroups = new Map(); // Track tab groups by search query
 
+// 能力探测：国产 Chromium 外壳（360 / QQ 等）内核可能很新，但**不实现**官方专有 API。
+// 缺失时不能靠运气——缺 tabGroups 会让分组抛错、把后面的「聚焦标签 + 开侧栏」一起带走；
+// 缺 sidePanel 时降级成独立侧栏窗口，否则用户看到的就是「点了没反应」。
+const CAPS = {
+  tabGroups: typeof chrome.tabGroups !== 'undefined' && typeof chrome.tabs?.group === 'function',
+  sidePanel: typeof chrome.sidePanel !== 'undefined' && typeof chrome.sidePanel.open === 'function',
+  systemDisplay: typeof chrome.system !== 'undefined' &&
+    typeof chrome.system.display !== 'undefined' &&
+    typeof chrome.system.display.getInfo === 'function',
+};
+
 // Initialize on install
 chrome.runtime.onInstalled.addListener(async () => {
   console.log('1SO SearchHub installed');
@@ -69,81 +80,123 @@ async function handleSearch(message) {
 }
 
 // Open search results in tabs
+// 注意：这里刻意拆成四段独立 try —— 分组能力缺失只是「少一个增强」，
+// 不能连带把聚焦首标签、打开结果面板一起弄没（v1.3.5 修复）。
 async function openInTabs(urls, query, settings) {
+  let windowId = null;
   try {
-    // Get current window ID first
     const [currentTab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true });
-    const windowId = currentTab ? currentTab.windowId : null;
+    windowId = currentTab ? currentTab.windowId : null;
+  } catch (error) {
+    console.error('Failed to resolve current window:', error);
+  }
 
-    // Create all tabs
-    const createdTabs = [];
-    for (const item of urls) {
+  // 1) 建标签（逐个兜底，一个失败不拖累其余）
+  const createdTabs = [];
+  for (const item of urls) {
+    try {
       const tab = await chrome.tabs.create({ url: item.url, active: false });
       createdTabs.push(tab);
+    } catch (error) {
+      console.error('Failed to create tab:', item.url, error);
     }
+  }
 
-    // Group tabs if enabled
-    if (settings.groupTabs && createdTabs.length > 0) {
-      const tabIds = createdTabs.map(tab => tab.id);
-      const groupId = await chrome.tabs.group({ tabIds });
+  // 2) 分组（不支持时静默跳过）
+  if (settings.groupTabs && createdTabs.length > 0) {
+    if (CAPS.tabGroups) {
+      try {
+        const tabIds = createdTabs.map(tab => tab.id);
+        const groupId = await chrome.tabs.group({ tabIds });
 
-      // Update group properties
-      await chrome.tabGroups.update(groupId, {
-        title: query.length > 20 ? query.substring(0, 20) + '...' : query,
-        color: TAB_COLORS[colorIndex % TAB_COLORS.length],
-        collapsed: settings.collapsedGroups
-      });
+        await chrome.tabGroups.update(groupId, {
+          title: query.length > 20 ? query.substring(0, 20) + '...' : query,
+          color: TAB_COLORS[colorIndex % TAB_COLORS.length],
+          collapsed: settings.collapsedGroups
+        });
 
-      colorIndex++;
-
-      // Store group info
-      tabGroups.set(groupId, {
+        colorIndex++;
+        tabGroups.set(groupId, { query, tabIds, timestamp: Date.now() });
+      } catch (error) {
+        console.error('Tab grouping failed (skipped):', error);
+      }
+    } else {
+      // 内核没有标签分组：只留在内存里，不影响用户拿到结果
+      tabGroups.set('nogroup-' + Date.now(), {
         query,
-        tabIds,
+        tabIds: createdTabs.map(tab => tab.id),
         timestamp: Date.now()
       });
     }
+  }
 
-    // Focus first tab
-    if (createdTabs.length > 0) {
+  // 3) 聚焦首个结果
+  if (createdTabs.length > 0) {
+    try {
       await chrome.tabs.update(createdTabs[0].id, { active: true });
+    } catch (error) {
+      console.error('Failed to focus first tab:', error);
     }
+  }
 
-    // Always show sidebar after search (for vertical tabs management)
-    // Delay slightly to ensure tabs are created
-    if (windowId) {
-      setTimeout(async () => {
+  // 4) 打开结果面板：原生侧边栏 → 降级独立窗口
+  if (windowId) {
+    setTimeout(async () => {
+      if (CAPS.sidePanel) {
         try {
-          await chrome.sidePanel.open({ windowId: windowId });
+          await chrome.sidePanel.open({ windowId });
           console.log('Sidebar opened successfully for window:', windowId);
+          return;
         } catch (error) {
           console.error('Failed to open sidebar:', error);
-          // Try alternative method
           try {
-            await chrome.sidePanel.setOptions({
-              path: 'sidebar.html',
-              enabled: true
-            });
-            await chrome.sidePanel.open({ windowId: windowId });
+            await chrome.sidePanel.setOptions({ path: 'sidebar.html', enabled: true });
+            await chrome.sidePanel.open({ windowId });
             console.log('Sidebar opened with alternative method');
+            return;
           } catch (err) {
             console.error('Alternative method also failed:', err);
           }
         }
-      }, 100);
-    }
-  } catch (error) {
-    console.error('Failed to open tabs:', error);
+        // 关键：API 存在却打不开，几乎都是「用户手势已过期」（index.html 那边的直接调用
+        // 才是主路径）。此时**不能**降级开窗口 —— 会和已打开的原生侧栏双开。
+        console.warn('sidePanel exists but open failed (likely gesture expired); skip fallback');
+        return;
+      }
+      // 只有内核根本不实现 sidePanel（360 / QQ 等）才降级到独立小窗
+      try {
+        await chrome.windows.create({
+          url: `sidebar.html?win=${windowId}`,
+          type: 'popup',
+          width: 380,
+          height: 860
+        });
+        console.log('Fallback sidebar window opened (no sidePanel API)');
+      } catch (err) {
+        console.error('Fallback sidebar window failed:', err);
+      }
+    }, 100);
   }
 }
 
 // Open search results in windows
 async function openInWindows(urls, query, settings) {
   try {
+    // 没有屏幕信息（部分内核不实现 system.display）→ 退化成普通窗口，别直接 return
+    if (!CAPS.systemDisplay) {
+      for (const item of urls) {
+        await chrome.windows.create({ url: item.url, type: 'normal' });
+      }
+      return;
+    }
+
     // Get display info
     const displays = await chrome.system.display.getInfo();
     if (displays.length === 0) {
       console.error('No display found');
+      for (const item of urls) {
+        await chrome.windows.create({ url: item.url, type: 'normal' });
+      }
       return;
     }
 
@@ -401,9 +454,13 @@ async function cleanupOldGroups() {
 }
 
 // Handle tab group removal
-chrome.tabGroups.onRemoved.addListener((groupId) => {
-  tabGroups.delete(groupId);
-});
+// 顶层监听必须加守卫：不支持 tabGroups 的内核会让这里抛错，
+// 而 MV3 service worker 顶层一抛错，后面 tabs.onRemoved 就再也注册不上了。
+if (CAPS.tabGroups) {
+  chrome.tabGroups.onRemoved.addListener((groupId) => {
+    tabGroups.delete(groupId);
+  });
+}
 
 // Handle tab removal from groups
 chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
