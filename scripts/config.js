@@ -141,3 +141,86 @@ const DEFAULT_SETTINGS = {
   compactMode: false,
   collapsedCategories: []
 };
+
+// ── 远程引擎表（v1.3.6）────────────────────────────────────
+// 引擎站点的 URL 会漂移（半年一次），靠「改代码 → 发版 → 商店审核」追太慢，
+// 用户在此期间看到的是「点了没反应」。改为从官网拉取引擎表：
+// 改服务器上一个 engines.json 就生效，不用发版。
+// 站点对该文件带 Access-Control-Allow-Origin: *，因此**不需要额外主机权限**。
+const ENGINE_REMOTE_URL = 'https://1so.u-claw.org.cn/engines.json';
+const ENGINE_CACHE_KEY = 'engineTableRemote';
+const ENGINE_REFRESH_MS = 6 * 60 * 60 * 1000;   // 6 小时内不重复拉
+
+/**
+ * 用远程表「就地」覆盖内置表。
+ * 这样所有同步读 DEFAULT_ENGINES 的旧代码零改动，不用逐个改成异步。
+ */
+function applyEngineTable(table) {
+  if (!table || typeof table.categories !== 'object' || table.categories === null) return false;
+  const keys = Object.keys(table.categories);
+  if (!keys.length) return false;
+  for (const k of Object.keys(DEFAULT_ENGINES)) delete DEFAULT_ENGINES[k];
+  for (const k of keys) DEFAULT_ENGINES[k] = table.categories[k];
+  return true;
+}
+
+/**
+ * 页面初始化早期 await 一次：有缓存立刻用（毫秒级），没有就用内置表。
+ * 返回 true 表示用的是远程表。
+ */
+async function initEngineTable() {
+  try {
+    if (typeof chrome === 'undefined' || !chrome.storage) return false;
+    const r = await chrome.storage.local.get([ENGINE_CACHE_KEY]);
+    const cached = r && r[ENGINE_CACHE_KEY];
+    if (cached && cached.categories) return applyEngineTable(cached);
+  } catch (e) {
+    console.warn('engine table: cache read failed', e);
+  }
+  return false;
+}
+
+/**
+ * 后台刷新（不阻塞渲染，本次打开不重渲染，下次生效）。
+ * 失败静默——引擎表拉不到不该影响搜索。
+ */
+async function refreshEngineTable(opts) {
+  const force = !!(opts && opts.force);
+  try {
+    if (typeof chrome === 'undefined' || !chrome.storage) return { ok: false, reason: 'no-storage' };
+    const r = await chrome.storage.local.get([ENGINE_CACHE_KEY]);
+    const cached = r && r[ENGINE_CACHE_KEY];
+
+    if (!force && cached && cached.fetchedAt && (Date.now() - cached.fetchedAt) < ENGINE_REFRESH_MS) {
+      return { ok: true, skipped: 'fresh' };
+    }
+
+    const ctl = new AbortController();
+    const timer = setTimeout(() => ctl.abort(), 6000);
+    let res;
+    try {
+      res = await fetch(ENGINE_REMOTE_URL, { signal: ctl.signal, cache: 'no-store' });
+    } finally {
+      clearTimeout(timer);
+    }
+    if (!res || !res.ok) return { ok: false, reason: 'http-' + (res ? res.status : 'n/a') };
+
+    const data = await res.json();
+    if (!data || !data.categories) return { ok: false, reason: 'bad-payload' };
+
+    // 版本没变：只更新「最后检查时间」，避免每次都重新下载
+    if (cached && Number(cached.version) >= Number(data.version)) {
+      await chrome.storage.local.set({
+        [ENGINE_CACHE_KEY]: Object.assign({}, cached, { fetchedAt: Date.now() })
+      });
+      return { ok: true, skipped: 'same-version' };
+    }
+
+    data.fetchedAt = Date.now();
+    await chrome.storage.local.set({ [ENGINE_CACHE_KEY]: data });
+    console.log('engine table: updated to version', data.version);
+    return { ok: true, updated: true, version: data.version };
+  } catch (e) {
+    return { ok: false, reason: (e && e.name === 'AbortError') ? 'timeout' : String(e).slice(0, 80) };
+  }
+}

@@ -22,7 +22,7 @@
 
 ![侧边栏：本次结果按垂直列表排好，带分组和颜色](docs/screenshots/03-sidebar.png)
 
-当前版本 **v1.3.5**：修掉了「在 360 / QQ 等国产浏览器上点了没反应」——这些浏览器内核不实现标签分组/侧边栏接口，现在缺接口时自动降级（侧栏改成独立小窗），不再整条链断掉。
+当前版本 **v1.3.6**：引擎表改为**可远程更新**——AI 站点换域名很频繁（半年一次），扩展启动时会从官网拉取最新引擎表，改一条 URL 不需要等商店审核。v1.3.5 修掉了「在 360 / QQ 等国产浏览器上点了没反应」——这些浏览器内核不实现标签分组/侧边栏接口，现在缺接口时自动降级（侧栏改成独立小窗），不再整条链断掉。
 
 ### 安装
 
@@ -93,7 +93,7 @@ git clone https://github.com/dongsheng123132/SearchHub.git
 
 ![Side panel: this search's results listed vertically, grouped and colored](docs/screenshots/03-sidebar.png)
 
-Current version **v1.3.5** fixes "click search, nothing happens" on Chinese Chromium-shell browsers (360, QQ) that don't implement the tab-groups / side-panel APIs — missing APIs now degrade gracefully instead of breaking the whole chain.
+Current version **v1.3.6** makes the engine table **remotely updatable** — AI sites move domains about twice a year, so the extension pulls the latest table at startup; fixing a URL no longer needs a store review. v1.3.5 fixed "click search, nothing happens" on Chinese Chromium-shell browsers (360, QQ) that don't implement the tab-groups / side-panel APIs — missing APIs now degrade gracefully instead of breaking the whole chain.
 
 ### Install
 

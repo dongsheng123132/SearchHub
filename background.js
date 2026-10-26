@@ -1,5 +1,14 @@
 // Background service worker for 1SO SearchHub
 
+// 引擎表真相源在 scripts/config.js。这里原来是手抄的第二份映射
+// （50 条，每次加引擎都要改两处，是历史上最常出 bug 的地方）。
+// 改成 importScripts 后只保留一份，同时也能吃到远程引擎表。
+try {
+  importScripts('scripts/config.js');
+} catch (e) {
+  console.error('importScripts(scripts/config.js) failed:', e);
+}
+
 const TAB_COLORS = ['blue', 'red', 'yellow', 'green', 'pink', 'purple', 'cyan', 'orange'];
 let colorIndex = 0;
 let tabGroups = new Map(); // Track tab groups by search query
@@ -323,80 +332,19 @@ async function findEngineById(engineId) {
   return null;
 }
 
-// Find engine by ID from default engines only
+// Find engine by ID from the default engines table
+// （原来这里是一份 50 条硬编码副本，与 config.js 双份维护；现改为查同一个表）
 function findDefaultEngineById(engineId) {
-  // 与 scripts/config.js 保持同步（v1.3.0）
-  const engineMap = {
-    // AI Search
-    'perplexity': { url: 'https://www.perplexity.ai/search?q=%s', name: 'Perplexity' },
-    'metaso': { url: 'https://metaso.cn/?q=%s', name: '秘塔 Metaso' },
-    'genspark': { url: 'https://www.genspark.ai/search?q=%s', name: 'Genspark' },
-    'felo': { url: 'https://felo.ai/search?q=%s', name: 'Felo' },
-    'you': { url: 'https://you.com/search?q=%s', name: 'You.com' },
-    'exa': { url: 'https://exa.ai/search?q=%s', name: 'Exa' },
-    'monica': { url: 'https://s.monica.im/search?q=%s', name: 'Monica' },
-
-    // AI Chat
-    'doubao': { url: 'https://www.doubao.com/chat/?q=%s', name: '豆包 Doubao' },
-    'deepseek': { url: 'https://chat.deepseek.com/?q=%s', name: 'DeepSeek' },
-    'kimi': { url: 'https://www.kimi.com/?q=%s', name: 'Kimi' },
-    'hunyuan': { url: 'https://yuanbao.tencent.com/?q=%s', name: '腾讯元宝' },
-    'wenxin': { url: 'https://wenxin.baidu.com/?q=%s', name: '文心一言' },
-    'tongyi': { url: 'https://www.qianwen.com/?q=%s', name: '通义千问' },
-    'zhipu': { url: 'https://chatglm.cn/?q=%s', name: '智谱清言' },
-    'minimax': { url: 'https://hailuoai.com/?q=%s', name: '海螺 MiniMax' },
-    'mimo': { url: 'https://aistudio.xiaomimimo.com/?q=%s', name: '小米 MiMo' },
-    'xinghuo': { url: 'https://xinghuo.xfyun.cn/desk?q=%s', name: '讯飞星火' },
-    'tiangong': { url: 'https://www.tiangong.cn/?q=%s', name: '昆仑天工' },
-    'yuewen': { url: 'https://chat.stepfun.com/?q=%s', name: '阶跃跃问' },
-    'chatgpt': { url: 'https://chatgpt.com/?q=%s', name: 'ChatGPT' },
-    'claude': { url: 'https://claude.ai/new?q=%s', name: 'Claude' },
-    'gemini': { url: 'https://gemini.google.com/app?q=%s', name: 'Gemini' },
-    'grok': { url: 'https://grok.com/?q=%s', name: 'Grok' },
-
-    // Traditional
-    'baidu': { url: 'https://www.baidu.com/s?wd=%s', name: '百度' },
-    'google': { url: 'https://www.google.com/search?q=%s', name: 'Google' },
-    'bing': { url: 'https://www.bing.com/search?q=%s', name: 'Bing' },
-    'sogou': { url: 'https://www.sogou.com/web?query=%s', name: '搜狗' },
-    'duckduckgo': { url: 'https://duckduckgo.com/?q=%s', name: 'DuckDuckGo' },
-
-    // Social
-    'xiaohongshu': { url: 'https://www.xiaohongshu.com/search_result?keyword=%s', name: '小红书' },
-    'douyin': { url: 'https://www.douyin.com/search/%s', name: '抖音' },
-    'weibo': { url: 'https://s.weibo.com/weibo?q=%s', name: '微博' },
-    'zhihu': { url: 'https://www.zhihu.com/search?q=%s', name: '知乎' },
-    'twitter': { url: 'https://twitter.com/search?q=%s', name: 'Twitter/X' },
-    'reddit': { url: 'https://www.reddit.com/search/?q=%s', name: 'Reddit' },
-    'facebook': { url: 'https://www.facebook.com/search/top/?q=%s', name: 'Facebook' },
-
-    // Video
-    'bilibili': { url: 'https://search.bilibili.com/all?keyword=%s', name: '哔哩哔哩' },
-    'xigua': { url: 'https://www.ixigua.com/search/%s', name: '西瓜视频' },
-    'youtube': { url: 'https://www.youtube.com/results?search_query=%s', name: 'YouTube' },
-
-    // Knowledge
-    'baike': { url: 'https://baike.baidu.com/search?word=%s', name: '百度百科' },
-    'zhihu_k': { url: 'https://www.zhihu.com/search?q=%s', name: '知乎' },
-    'wikipedia': { url: 'https://zh.wikipedia.org/wiki/Special:Search?search=%s', name: '维基百科' },
-
-    // Maps
-    'amap': { url: 'https://www.amap.com/search?query=%s', name: '高德地图' },
-    'baidumap': { url: 'https://map.baidu.com/search?wd=%s', name: '百度地图' },
-    'qqmap': { url: 'https://map.qq.com/?what=%s', name: '腾讯地图' },
-
-    // Developer
-    'github': { url: 'https://github.com/search?q=%s', name: 'GitHub' },
-    'stackoverflow': { url: 'https://stackoverflow.com/search?q=%s', name: 'Stack Overflow' },
-
-    // Shopping
-    'taobao': { url: 'https://s.taobao.com/search?q=%s', name: '淘宝' },
-    'jd': { url: 'https://search.jd.com/Search?keyword=%s', name: '京东' },
-    'pinduoduo': { url: 'https://mobile.yangkeduo.com/search_result.html?search_key=%s', name: '拼多多' },
-    'amazon': { url: 'https://www.amazon.com/s?k=%s', name: 'Amazon' }
-  };
-
-  return engineMap[engineId];
+  try {
+    if (typeof DEFAULT_ENGINES === 'undefined') return null;
+    for (const category of Object.values(DEFAULT_ENGINES)) {
+      const found = (category.engines || []).find((e) => e.id === engineId);
+      if (found) return { url: found.url, name: found.name };
+    }
+  } catch (e) {
+    console.error('findDefaultEngineById failed:', e);
+  }
+  return null;
 }
 
 // Keyboard shortcut handler
@@ -475,5 +423,15 @@ chrome.tabs.onRemoved.addListener((tabId, removeInfo) => {
     }
   }
 });
+
+// 引擎表引导：先用本地缓存（右键/快捷键搜索走这张表），再后台刷新
+(async () => {
+  try {
+    if (typeof initEngineTable === 'function') await initEngineTable();
+    if (typeof refreshEngineTable === 'function') refreshEngineTable();
+  } catch (e) {
+    console.warn('engine table bootstrap failed:', e);
+  }
+})();
 
 console.log('1SO SearchHub background service worker loaded');

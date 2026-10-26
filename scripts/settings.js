@@ -4,10 +4,16 @@ let settings = DEFAULT_SETTINGS;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
+  try {
+    if (typeof initEngineTable === 'function') await initEngineTable();
+  } catch (e) { console.warn('engine table init failed', e); }
+
   await loadSettings();
   initializeTheme();
   populateSettings();
   attachEventListeners();
+
+  if (typeof refreshEngineTable === 'function') refreshEngineTable();
 });
 
 // Load settings from storage

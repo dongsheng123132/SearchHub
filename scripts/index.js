@@ -9,6 +9,11 @@ let state = {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
+  // 引擎表：先套用远程缓存（毫秒级，不阻塞），再后台刷新（下次打开生效）
+  try {
+    if (typeof initEngineTable === 'function') await initEngineTable();
+  } catch (e) { console.warn('engine table init failed', e); }
+
   await loadSettings();
   await initLanguage(); // load language from storage before rendering
   initializeTheme();
@@ -18,6 +23,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   attachEventListeners();
   restoreSelectedEngines();
   updateSelectedCount();
+
+  // 不 await：拉取失败/超时都不该拖慢首屏
+  if (typeof refreshEngineTable === 'function') refreshEngineTable();
 });
 
 // Load settings from storage

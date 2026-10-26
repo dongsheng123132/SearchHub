@@ -1,5 +1,17 @@
 # 1SO SearchHub — Chrome Web Store 上架文案（v1.3.3）
 
+## v1.3.6 更新日志（What's new，商店后台粘贴）
+
+**中文**
+> 引擎表改为可远程更新：以后某个 AI 站点换域名或改搜索路径，不用等扩展发版就能修好。同时把内置的第二份引擎映射合并为单一数据源，消除「右键搜索/快捷键搜索」与主界面不同步的问题。
+
+**English**
+> The engine table can now be updated remotely: when an AI site changes its domain or URL pattern, it can be fixed without shipping a new extension version. Also merged the duplicated engine map into a single source of truth, so right-click / shortcut searches can no longer drift from the main panel.
+
+**一句话版**：引擎表能远程更新了，某个 AI 换域名不用等发版。
+
+---
+
 ## v1.3.5 更新日志（What's new，商店后台粘贴）
 
 **中文**
