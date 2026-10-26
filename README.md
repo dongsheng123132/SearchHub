@@ -3,6 +3,7 @@
 > **第一 AI 搜索，一搜打开多个 AI + 搜索引擎 | Search once, get results from all engines at once**
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/lojjckopababijcnckabcilfkbgajnbo?label=Chrome%20Web%20Store)](https://chromewebstore.google.com/detail/ai-search-hub/lojjckopababijcnckabcilfkbgajnbo)
+[![官网](https://img.shields.io/badge/%E5%AE%98%E7%BD%91-1so.u--claw.org.cn-0f766e)](https://1so.u-claw.org.cn)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [中文](#中文) | [English](#english)
@@ -15,15 +16,25 @@
 
 ### 这是什么
 
-1SO SearchHub（一搜 AI 搜索）是一个 Chrome 浏览器扩展，让你**一次输入，同时在多个 AI 与搜索引擎打开结果**。v1.3.3 修复了腾讯元宝、文心一言、Kimi、通义千问、Monica、阶跃跃问六个引擎的入口，修复中文输入法回车误触，并更新 AI 站点兼容清单；支持 50 个常用引擎，涵盖 AI 搜索、AI 聊天、传统搜索、社交媒体、视频、地图、购物、知识库等分类。
+1SO SearchHub（一搜 AI 搜索）是一个浏览器扩展，让你**一次输入，同时在多个 AI 与搜索引擎打开结果**：结果自动归进一个彩色标签组，右侧侧栏按垂直列表管着。50 个预设引擎，分 9 类。
+
+![主界面：一个搜索框 + 50 个引擎，勾谁就问谁](docs/screenshots/01-main.png)
+
+![侧边栏：本次结果按垂直列表排好，带分组和颜色](docs/screenshots/03-sidebar.png)
+
+当前版本 **v1.3.5**：修掉了「在 360 / QQ 等国产浏览器上点了没反应」——这些浏览器内核不实现标签分组/侧边栏接口，现在缺接口时自动降级（侧栏改成独立小窗），不再整条链断掉。
 
 ### 安装
 
-**方式一：Chrome 应用商店（推荐）**
+**方式一：官网（国内可直接访问）**
+
+👉 https://1so.u-claw.org.cn —— 会按你的浏览器给对应的安装入口，也提供免安装的网页版。
+
+**方式二：Chrome 应用商店**
 
 [👉 点击安装 1SO SearchHub](https://chromewebstore.google.com/detail/ai-search-hub/lojjckopababijcnckabcilfkbgajnbo)
 
-**方式二：本地开发安装**
+**方式三：本地开发安装**
 
 ```bash
 git clone https://github.com/dongsheng123132/SearchHub.git
@@ -76,15 +87,25 @@ git clone https://github.com/dongsheng123132/SearchHub.git
 
 ### What is this
 
-1SO SearchHub is a Chrome extension that lets you **search once and open results across multiple AI and search engines simultaneously**. v1.3.3 fixes entry points for Yuanbao, Wenxin, Kimi, Qianwen, Monica and Yuewen, fixes the IME Enter issue, and refreshes the AI site compatibility list, with 50 preset engines across AI search, AI chat, traditional search, social media, video, maps, shopping, and knowledge bases.
+1SO SearchHub is a browser extension that lets you **search once and open results across multiple AI and search engines simultaneously**: results land in one colored tab group, and the side panel lists them vertically. 50 preset engines in 9 categories.
+
+![Main panel: one search box, 50 engines, tick the ones you want](docs/screenshots/01-main.png)
+
+![Side panel: this search's results listed vertically, grouped and colored](docs/screenshots/03-sidebar.png)
+
+Current version **v1.3.5** fixes "click search, nothing happens" on Chinese Chromium-shell browsers (360, QQ) that don't implement the tab-groups / side-panel APIs — missing APIs now degrade gracefully instead of breaking the whole chain.
 
 ### Install
 
-**Option 1: Chrome Web Store (Recommended)**
+**Option 1: Official site (reachable from mainland China)**
+
+👉 https://1so.u-claw.org.cn — it detects your browser and offers the matching install path, plus a no-install web version.
+
+**Option 2: Chrome Web Store**
 
 [👉 Install 1SO SearchHub](https://chromewebstore.google.com/detail/ai-search-hub/lojjckopababijcnckabcilfkbgajnbo)
 
-**Option 2: Local development**
+**Option 3: Local development**
 
 ```bash
 git clone https://github.com/dongsheng123132/SearchHub.git
