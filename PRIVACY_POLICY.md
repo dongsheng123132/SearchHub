@@ -54,7 +54,7 @@ If this policy changes, the "Last updated" date above changes and the new versio
 ### Contact
 
 - Email: hefangsheng@gmail.com
-- Website: https://www.hequbing.com
+- Website: https://1so.u-claw.org.cn
 - Issues: https://github.com/dongsheng123132/SearchHub
 
 ---
@@ -108,5 +108,5 @@ If this policy changes, the "Last updated" date above changes and the new versio
 ### 联系方式
 
 - 邮箱：hefangsheng@gmail.com
-- 网站：https://www.hequbing.com
+- 网站：https://1so.u-claw.org.cn
 - 问题反馈：https://github.com/dongsheng123132/SearchHub
